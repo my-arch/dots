@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Get all monitors
+MON=()
+MON+=($(swaymsg -t get_outputs | grep name | awk '{print $2}' | sed 's/.$//;s/"//g'))
+
+# Get all status
+ACT=()
+ACT+=($(swaymsg -t get_outputs | grep active | awk '{print $2}' | sed 's/.$//'))
+NACTIVE=$(grep -o "true" <<< ${ACT[*]} | wc -l)
+
+# Merge two arrays
+SEP=" - "
+MACT=()
+for idx in "${!MON[@]}"; do 
+    #MACT[idx]=$(( MON[idx] DELIMITER ACT[idx] ))
+    MACT[idx]=${MON[idx]}$SEP${ACT[idx]}
+done
+
+CHOICE=$(printf '%s\n' "${MACT[@]}" | rofi -dmenu \
+        -theme ~/Documents/8_Config/1_rofi/themes/monitor.rasi \
+        -config ~/Documents/8_Config/1_rofi/config/module.rasi \
+        -p "Toggle Display")
+        #-a 0 -u 2 -selected-row 1)
+
+CARR=($(printf '%s\n' "${CHOICE//$SEP/$'\n'}"))
+
+if [[ "${CARR[1]}" == "true" && $NACTIVE > 1 ]]; then
+    ACTION="disable"
+else
+    ACTION="enable"
+fi
+
+swaymsg output ${CARR[0]} $ACTION

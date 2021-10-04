@@ -1,0 +1,85 @@
+# Settings
+background no
+double_buffer yes
+
+use_xft yes
+xftfont Roboto:size=9
+xftalpha 1
+
+cpu_avg_samples 1
+net_avg_samples 1
+update_interval 1
+
+total_run_times 0
+
+# Transparency
+own_window_argb_visual yes
+own_window_argb_value 100
+
+# Windows Settings
+own_window yes
+own_window_type override   # override means not under the control of windows manager
+own_window_transparent no
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+stippled_borders 0
+border_margin 5
+border_width 10
+default_color 000000
+default_shade_color 000000
+default_outline_color 000000
+
+# Height = 1080-24
+minimum_size 250 744
+maximum_width 250
+alignment top_left
+
+gap_x 0
+gap_y 0
+
+color0 57b4a2
+color1 fed96d
+color2 ffc722
+color3 ed9d54
+color7 856728
+color8 57b4a2
+
+TEXT
+
+${color3}${font Roboto:light:size=40}${alignc}${time %H:%M}$font
+${color1}${font Roboto:light:size=20}${alignc}${time %a, %b %d}
+${font Roboto:size=10}
+    ${color8}${font Font\ Awesome:size=15}${font Roboto:light:size=10}   ${color0}${cpubar cpu0 10,}
+    ${alignr}${cpu cpu0}%${color2}
+         ${top name 1} $alignr ${top cpu 1}%
+         ${top name 2} $alignr ${top cpu 2}%
+         ${top name 3} $alignr ${top cpu 3}%
+         ${top name 4} $alignr ${top cpu 4}%
+         ${top name 5} $alignr ${top cpu 5}%
+
+    ${color8}${font Font\ Awesome:size=15}${font Roboto:light:size=10}   ${color0}${membar 10,}
+    ${alignr}${mem}/${memmax}${color2}
+        ${top_mem name 1} $alignr ${top_mem mem_res 1}
+        ${top_mem name 2} $alignr ${top_mem mem_res 2}
+        ${top_mem name 3} $alignr ${top_mem mem_res 3}
+        ${top_mem name 4} $alignr ${top_mem mem_res 4}
+        ${top_mem name 5} $alignr ${top_mem mem_res 5}
+
+    ${color8}${font Font\ Awesome:size=15}${font Roboto:light:size=10}   ${color0}${fs_bar 10 /}${color0}
+    ${alignr}${fs_used /} / ${fs_size /}
+
+    ${color8}${font Font\ Awesome:size=15}${font Roboto:light:size=10}   ${color0}${fs_bar 10 /home}${color0}
+    ${alignr}${fs_used /home} / ${fs_size /home}
+
+    ${color8}${font Font\ Awesome:size=15}${font Roboto:light:size=10}
+        ${color3}Core 1: ${alignr}${execi 30 sensors | grep 'Core 0' | cut -c17-20}°C
+        ${color3}Core 2: ${alignr}${execi 30 sensors | grep 'Core 1' | cut -c17-20}°C
+        ${color3}CPU   : ${alignr}${execi 30 sensors | grep 'CPU' | cut -c18-21}°C
+
+
+
+# vim: ft=dosini

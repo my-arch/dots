@@ -1,0 +1,11 @@
+#!/bin/bash
+
+HIST=$HOME/Documents/8_Config/1_rofi/menu-script/qalc_hist.txt
+
+if [[ -z "$@" ]]; then
+    > $HIST
+else
+    OUTPUT=$(qalc "$@")
+    echo "$OUTPUT" >> $HIST
+    sed '1!G;h;$!d' $HIST
+fi

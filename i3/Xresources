@@ -1,0 +1,65 @@
+! special
+*.foreground:   #ebdbb2
+*.background:   #32302f
+*.cursorColor:  #dfdfdf
+
+! black
+*.color0:       #232328
+*.color8:       #e1aa57
+
+! red
+*.color1:       #f94757
+*.color9:       #f45b69
+
+! green
+*.color2:       #00b159
+*.color10:      #28b56f
+
+! yellow
+*.color3:       #fcb928
+*.color11:      #f9c34f
+
+! blue
+*.color4:       #1882dc
+*.color12:      #bbddff
+
+! magenta
+*.color5:       #e090a6
+*.color13:      #e090a6
+
+! cyan
+*.color6:       #33a5db
+*.color14:      #5fb5de
+
+! white
+*.color7:       #8c7676
+*.color15:      #dfdfdf
+
+URxvt.inputMethod: fcitx5
+URxvt.preeditType: OnTheSpot,None
+
+!! Transparency settings
+URxvt.transparent:     true
+URxvt.shading:         20
+URxvt.depth:           32
+!! URxvt.inheritPixmap: true
+
+URxvt*loginShell: true
+URxvt*scrollBar: false
+URxvt*internalBorder: 5
+URxvt*font: xft:Monospace:size=12,xft:WenQuanYi Micro Hei Mono:size=12,xft:Font\ Awesome:size=12
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
+URxvt.tabbed.new-button: false
+URxvt.tabbed.title: false
+URxvt.tabbed.autohide: true
+URxvt.tabbed.tabbar-bg: 7
+URxvt.tabbed.tab-fg: 7
+URxvt.tabbed.tabbar-fg: 0
+URxvt.tabbed.tab-bg: 0
+URxvt*geometry: 80x30
+
+urxvt*depth: 32
+!urxvt*background: rgba:0000/0000/0200/c800
+!URxvt*fading:       70
+!URxvt*fadeColor:    #282828

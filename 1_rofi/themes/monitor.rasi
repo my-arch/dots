@@ -1,0 +1,92 @@
+configuration {
+    location:                               0;
+    yoffset:                                0;
+    xoffset:                                0;	
+}
+
+@import "~/Documents/8_Config/1_rofi/colors/colors.rasi"
+
+* {
+    /* General */
+    text-font:                              "Ubuntu Mono 13";
+    icon-font:                              "Symbols Nerd Font 12";
+    icon-font-small:                        "Symbols Nerd Font 10";
+
+    listview-spacing:                       10px;
+    option-element-padding:                 10px 25px 10px 10px;
+
+    /*                                      top, rig, bot, lef */
+    window-padding:                         15px 15px 15px 15px;
+    prompt-padding:                         10px 110px 10px 110px;
+    element-padding:                        10px 15px 5px -35px;
+
+    prompt-margin:                          0px 0px 0px -2px;
+    inputbar-margin:                        0px 0px 10px 0px;
+
+    window-border:                          1px;
+    element-border:                         1px;
+}
+
+* {
+    font:                                   @text-font;
+    background-color:                       @dark-grey;
+    text-color:                             @black;
+}
+
+#window {
+    width:                                  380;
+    padding:                                @window-padding;
+    children:                               [inputbar, horibox];
+    border:                                 @window-border;
+    border-color:                           @blue;
+}
+
+#inputbar {
+    children:                               [prompt];
+    margin:                                 @inputbar-margin;
+    background-color:                       @clear;
+}
+
+#prompt {
+    padding:                                @prompt-padding;
+    border:                                 2px;
+    border-color:                           @dark-grey;
+    margin:                                 @prompt-margin;
+    background-color:                       @white;
+    text-color:                             @black;
+}
+
+#horibox {
+    children:                               [listview];
+    padding:                                0px;
+}
+
+#listview {
+    layout:                                 horizontal;
+    spacing:                                @listview-spacing;
+    background-color:                       @clear;
+}
+
+#element {
+    padding:                                @option-element-padding;
+    background-color:                       @mid-grey;
+    font:                                   @text-font;
+    text-color:                             @black;
+    border:                                 @element-border;
+    border-color:                           @dark-grey;
+}
+
+#element-text {
+    background-color:                       @clear;
+}
+
+#element-icon {
+    size:                                   1.2em;
+    background-color:                       @clear;
+}
+
+#element.selected {
+    background-color:                       @white;
+    text-color:                             @black;
+    border-color:                           @dark-grey;
+}

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+POWER=$(bluetoothctl show | grep Powered | awk '{print $2}')
+
+INTERNAL="alsa_card.pci-0000_00_1f.3"
+DOCK="alsa_card.usb-Generic_USB_Audio_200901010001-00"
+BLUEZ="bluez_sink.08_EB_ED_52_2F_2B"
+
+if [[ "$POWER" == "no" ]]; then
+    bluetoothctl power on
+    bluetoothctl connect 08:EB:ED:52:2F:2B
+
+    sleep 3
+    MI=$(pactl list sinks | grep -i "mi portable")
+
+    if [[ "$MI" == "" ]]; then
+        pactl set-card-profile $INTERNAL "output:hdmi-stereo+input:analog-stereo"
+        pactl set-card-profile $DOCK "off"
+    else
+        pactl set-card-profile $BLUEZ "output:a2dp_sink+input:analog-stereo"
+        pactl set-card-profile $INTERNAL "off"
+        pactl set-card-profile $DOCK "off"
+        notify-send -t 1500 "Mi Portable Connected" -a "Bluetooth Connection"
+    fi
+else
+    bluetoothctl power off
+    pactl set-card-profile $INTERNAL "output:hdmi-stereo+input:analog-stereo"
+    pactl set-card-profile $DOCK "off"
+    notify-send -t 1500 "Bluetooth Off" -a "Bluetooth Connection"
+fi

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+WF=$(ps -A | grep wofi | wc -l)
+if [ ${WF} == 0 ]; then
+    ST=$(dropbox-cli status)
+
+    ARR=()
+    ARR+=("Start")
+    ARR+=("Stop")
+    ARR+=("None")
+    ARR+=("Auto")
+    ARR+=("Proxy")
+
+    rm $HOME/.cache/wofi-dmenu
+
+    CHOICE=$(printf '%s\n' "${ARR[@]}" | wofi --dmenu --location 5 \
+        --width=150 --height=210 \
+        --xoffset=-260 --yoffset=-35 -p "Dropbox Menu" \
+        -s ~/.config/sway/wofi/style.css \
+        | sed 's/^[ \t]*//;s/[ \t]*$//')
+
+    if [ "$CHOICE" = "Start" ]; then
+        dropbox-cli start
+        exit 0
+    fi
+
+    if [ "$CHOICE" = "Stop" ]; then
+        dropbox-cli stop
+        exit 0
+    fi
+
+    if [ "$CHOICE" = "None" ]; then
+        dropbox-cli proxy none
+        exit 0
+    fi
+
+    if [ "$CHOICE" = "Auto" ]; then
+        dropbox-cli proxy auto
+        exit 0
+    fi
+
+    if [ "$CHOICE" = "Proxy" ]; then
+        dropbox-cli proxy manual http 192.168.31.19 8080 1201371 8245
+        exit 0
+    fi
+else
+    killall wofi
+    exit 0
+fi

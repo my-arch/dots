@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+# ========================================
+# Temperature
+# ========================================
+CORE0=$(sensors | grep 'Core 0' | awk '{print $3}' | cut -c2-)
+CORE1=$(sensors | grep 'Core 1' | awk '{print $3}' | cut -c2-)
+CPU=$(sensors | grep 'CPU' | awk '{print $2}' | cut -c2-)
+
+
+# ========================================
+# Unit size
+# ========================================
+# Unit here should be multiplied by 1024 to get exact size
+# As numbers in /proc/meminfo has unit kB
+KB=1
+MB=1024
+GB=1048576
+TB=1073741824
+
+# ========================================
+# RAM Info
+# ========================================
+MEMTOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+MEMFREE=$(cat /proc/meminfo | grep MemFree | awk '{print $2}')
+BUFFER=$(cat /proc/meminfo | grep Buffers | awk '{print $2}')
+CACHE=$(cat /proc/meminfo | grep Cached | awk '{print $2}')
+CACHE=$(echo $CACHE | awk '{print $1}')
+
+
+# ========================================
+# RAM USED
+# ========================================
+MEMUSED=$(expr $MEMTOTAL - $MEMFREE - $BUFFER - $CACHE)
+
+if [[ "$MEMUSED" -ge "$TB" ]]; then
+	MEMUSED=$(echo "scale=2; $MEMUSED/$TB" | bc)"Tb"
+elif [[ "$MEMUSED" -ge "$GB" ]]; then
+	MEMUSED=$(echo "scale=2; $MEMUSED/$GB" | bc)"Gb"
+elif [[ "$MEMUSED" -ge "$MB" ]]; then
+	MEMUSED=$(echo "scale=2; $MEMUSED/$MB" | bc)"Mb"
+else
+	MEMUSED=$(echo "scale=2; $MEMUSED/$KB" | bc)"Kb"
+fi
+
+
+# ========================================
+# CPU Info
+# ========================================
+#CPU_USAGE=$(cat /proc/stat | grep cpu)
+#CPU_USED=$(echo $CPU_USAGE | awk '{print $2}')
+#CPU_TOTAL=$(echo $CPU_USAGE | awk '{print $5}')
+#CPU_PCT=$(echo "scale=2; $CPU_USED/$CPU_TOTAL*100" | bc)"%"
+
+# ========================================
+# Action
+# ========================================
+fulltext=$(echo "Core 1: $CORE0 | Core 2: $CORE1 | CPU: $CPU | RAM: $MEMUSED")
+
+case $BLOCK_BUTTON in
+	1) echo "$fulltext";;
+	3) echo ""
+esac

@@ -1,0 +1,166 @@
+configuration {
+    location:                               0;
+    yoffset:                                0;
+    xoffset:                                0;	
+
+    drun-display-format:                    "{icon} {name}";
+    display-drun:                           "";
+    show-icons:                             true;
+    modi: ":~/Documents/8_Config/1_rofi/menu-script/todo,drun,:~/Documents/8_Config/1_rofi/menu-script/qalc";
+    kb-mode-next:	                        "Alt+l";
+    kb-mode-previous:	                    "Alt+h";
+}
+
+@import "~/Documents/8_Config/1_rofi/colors/colors.rasi"
+
+* {
+    /* General */
+    text-font:                              "Roboto Mono 14";
+    icon-font:                              "Symbols Nerd Font 12";
+    icon-font-small:                        "Symbols Nerd Font 10";
+
+    listview-spacing:                       10px;
+    option-element-padding:                 10px 10px 10px 10px;
+
+    /*                                      top, rig, bot, lef */
+    window-padding:                         250px 400px;
+    mainbox-padding:                        10px;
+    inputbar-padding:                       4px;
+    prompt-padding:                         15px 20px 10px 20px;
+    entry-padding:                          8px 12px;
+    element-padding:                        10px;
+    mode-padding:                           4px;
+    button-padding:                         10px 0px 10px 85px;
+
+    inputbar-margin:                        5px 5px 5px 5px;
+    prompt-margin:                          0px 0px 0px 0px;
+    button-margin:                          10px 0px 10px 0px;
+
+    window-border:                          2px;
+    mainbox-border:                         2px;
+    inputbar-border:                        0px;
+    prompt-border:                          0px;
+    entry-border:                           1px;
+    element-border:                         1px;
+    element-selected-border:                1px;
+    mode-border:                            0px;
+    button-border:                          0px;
+
+    mainbox-radius:                         0px 0px;
+    inputbar-radius:                        12px;
+    prompt-radius:                          12px 0px 0px 12px;
+    entry-radius:                           0px 12px 12px 0px;
+    element-radius:                         12px;
+    mode-radius:                            0px 0px 12px 0px;
+    button-radius:                          24px;
+}
+
+* {
+    font:                                   @icon-font;
+}
+
+#window {
+    /* height:                                 1130px; */
+    /* width:                                  2562px; */
+    height:                                 430px;
+    width:                                  600px;
+    /* padding:                                350px 1000px; */
+    border:                                 @window-border;
+    border-color:                           @nord1;
+    background-color:                       @clear;
+}
+
+#mainbox {
+    children:                               [inputbar, listview, mode-switcher];
+    padding:                                @mainbox-padding;
+    background-color:                       @nord0;
+    border:                                 @mainbox-border;
+    border-radius:                          @mainbox-radius;
+    border-color:                           @dark-grey;
+}
+
+#inputbar {
+    children:                               [prompt, entry];
+    padding:                                @inputbar-padding;
+    margin:                                 @inputbar-margin;
+    background-color:                       @clear;
+}
+
+#prompt {
+    padding:                                @prompt-padding;
+    border:                                 @prompt-border;
+    border-radius:                          @prompt-radius;
+    margin:                                 @prompt-margin;
+    background-color:                       @clear;
+    text-color:                             @white;
+}
+
+#entry {
+    font:                                   @text-font;
+    text-color:                             @black;
+    padding:                                @entry-padding;
+    background-color:                       @light-breeze;
+    border:                                 @entry-border;
+    border-radius:                          @entry-radius;
+    border-color:                           @dark-grey;
+}
+
+#listview {
+    columns:                                1;
+    padding:                                8;
+    spacing:                                @listview-spacing;
+    background-color:                       @clear;
+}
+
+#element {
+    orientation:                            horizontal;
+    children:                               [element-icon, element-text];
+    font:                                   @text-font;
+    text-color:                             @black;
+    background-color:                       @mid-grey;
+    border:                                 @element-border;
+    border-color:                           @dark-grey;
+    padding:                                @element-padding;
+    border-radius:                          @element-radius;
+}
+
+#element-text {
+    background-color:                       @clear;
+}
+
+#element-icon {
+    size:                                   1.2em;
+    background-color:                       @clear;
+}
+
+#element.selected {
+    text-color:                             @black;
+    background-color:                       @white;
+    border:                                 @element-selected-border;
+    border-color:                           @dark-grey;
+}
+
+#mode-switcher {
+    background-color:                       @clear;
+    padding:                                @mode-padding;
+}
+
+#button{
+    text-color:                             @white;
+    background-color:                       @clear;
+    padding:                                @button-padding;
+    margin:                                 @button-margin;
+    border:                                 @button-border;
+    border-radius:                          @button-radius;
+    border-color:                           @clear;
+}
+
+#button.selected{
+    text-color:                             @black;
+    background-color:                       @white;
+    padding:                                @button-padding;
+    margin:                                 @margin-padding;
+    border:                                 @button-border;
+    border-radius:                          @button-radius;
+    border-color:                           @dark-grey;
+}

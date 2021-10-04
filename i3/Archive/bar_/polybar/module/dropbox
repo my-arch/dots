@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ST=$(dropbox-cli status)
+RN=$(dropbox-cli running)
+
+#if [ "$CHOICE" = "	Start" ]; then
+#	dropbox-cli start
+#	exit 0
+#fi
+
+if [ "$ST" = "Up to date" ]; then
+    echo "%{F#ffffff}"
+    #echo "%{F#000000}"
+else
+    echo "%{F#ff0000}"
+fi

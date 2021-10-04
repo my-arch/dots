@@ -1,0 +1,180 @@
+; ================================================
+; Check icon:	
+; https://fontawesome.com/icons?d=gallery&m=free
+; ================================================
+
+; =============================
+; 	Color
+; =============================
+[colors]
+background=		#222222
+background-alt=		#444444
+foreground=		#dfdfdf
+foreground-alt=		#555555
+primary=		#ffb52a
+secondary=		#e60053
+alert=			#bd2c40
+
+white=			#FFFFFF
+black=			#000000
+red=			#FF0000
+red-alt=		#CC6666
+red-alt2=		#FF5555
+yellow=			#F0C674
+yellow-alt=		#F8DFB0
+blue=			#7FA0BC
+blue-alt=		#7EEEFF
+green=			#B3BB67
+green-alt=		#AAFF77
+green-alt2=		#0CFF00
+orange=			#FBA922
+orange-alt=		#FABD2F
+pink=			#FE715D
+pink-alt=		#FDA78C
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[settings]
+screenchange-reload = true
+
+[bar/bar_top]
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+
+background = #2F343F
+foreground = ${colors.foreground}
+
+border-bottom-size = 1
+border-bottom-color = #0088CC
+
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Roboto:size=10.5;1
+font-1 = Font Awesome 5 Brands:size=10.5;1
+font-2 = Font Awesome 5 Free:size=10.5;1
+font-3 = Font Awesome 5 Free:style=solid:size=10.5;1
+font-4 = WenQuanYi Zen Hei:size=8;1
+
+modules-left = xwindow
+modules-center =
+modules-right = split tabbed float move alt minimize restore close
+
+tray-position = 
+tray-padding = 0
+
+bottom = false
+
+; On the left
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:70:...%  %{B- -o -u}
+label-foreground = ${colors.green-alt}
+label-padding = 5
+
+; On the right
+[module/restore]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg scratchpad show 
+content-padding = 2
+
+[module/float]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg floating toggle
+content-padding = 2
+
+[module/split]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg layout toggle split
+content-padding = 2
+
+[module/tabbed]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg layout tabbed
+content-padding = 2
+
+[module/move]
+type = custom/menu
+label-open = ""
+label-open-foreground = ${colors.white}
+label-close = ""
+label-close-foreground = ${colors.blue}
+label-separator = " "
+format-spacing = 2
+menu-0-0 = ""
+menu-0-0-foreground = ${colors.white}
+menu-0-0-exec = i3-msg move left
+menu-0-1 = ""
+menu-0-1-foreground = ${colors.white}
+menu-0-1-exec = i3-msg move up
+menu-0-2 = ""
+menu-0-2-foreground = ${colors.white}
+menu-0-2-exec = i3-msg move down
+menu-0-3 = ""
+menu-0-3-foreground = ${colors.white}
+menu-0-3-exec = i3-msg move right
+
+[module/alt]
+type = custom/text
+content = ""
+content-foreground = ${colors.green}
+click-left = bash /home/chew/.config/i3/bar/polybar/module/focus_next
+content-padding = 2
+
+[module/minimize]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg move scratchpad
+content-padding = 2
+
+[module/close]
+type = custom/text
+content = ""
+content-foreground = ${colors.orange}
+click-left = i3-msg kill
+content-padding = 2
+
+[module/left]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg move left
+content-padding = 2
+
+[module/up]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg move up
+content-padding = 2
+
+[module/down]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg move down
+content-padding = 2
+
+[module/right]
+type = custom/text
+content = ""
+content-foreground = ${colors.white}
+click-left = i3-msg move right
+content-padding = 2
+
+; vim:ft=dosini

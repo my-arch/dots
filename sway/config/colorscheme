@@ -1,0 +1,19 @@
+## Base16 Gruvbox dark, hard
+# Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+
+set $base00 #ffffff
+set $base01 #2e3440
+set $base02 #ff673d
+set $base03 #665c54
+set $base04 #bdae93
+set $base05 #999999
+set $base06 #ebdbb2
+set $base07 #fbf1c7
+set $base08 #fb4934
+set $base09 #fe8019
+set $base0A #fabd2f
+set $base0B #b8bb26
+set $base0C #8ec07c
+set $base0D #445469
+set $base0E #d3869b
+set $base0F #d65d0e

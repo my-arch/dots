@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get bar status
+BAR=$(ps -A | grep polybar | wc -l)
+
+# Launch or close bar_window
+if [ "${BAR}" = "1" ]; then
+	polybar bar_top --config=/home/chew/.config/i3/bar/polybar/config_top
+else
+	BAR_ID=$(pgrep -f bar_top)
+	kill "${BAR_ID}"
+fi

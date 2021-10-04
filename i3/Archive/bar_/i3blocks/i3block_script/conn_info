@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Read IP Address
+WIFI_TYPE=$(ip addr show dev wlp2s0 | grep inet | head -1 | awk '{print $2}' | rev | cut -c 4- | rev)
+LAN_TYPE=$(ip addr show dev eno1 | grep inet | head -1 | awk '{print $2}' | rev | cut -c 4- | rev)
+
+# Read WiFi Name
+SSID_NAME=$(iwgetid -r | cut -c1-9)
+
+# Find IP and SSID Name
+if [ "$WIFI_TYPE" == "" ] && [ "$LAN_TYPE" == ""]
+then
+	SSID_NAME="Not Connected"
+elif [ "$LAN_TYPE" != "" ]
+then
+	SSID_NAME="LAN Cable"
+	IP_NAME="$LAN_TYPE"
+else
+	SSID_NAME=$(iwgetid -r | cut -c1-9)
+	IP_NAME="$WIFI_TYPE"
+fi
+
+full_text=$(echo " $IP_NAME")
+
+# Left Click to Open, Right to Close
+case $BLOCK_BUTTON in
+	1) echo "$full_text";;
+	3) echo ""
+esac
+

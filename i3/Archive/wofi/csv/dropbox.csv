@@ -1,0 +1,5 @@
+Start, dropbox-cli start
+Stop, dropbox-cli stop
+None, dropbox-cli proxy none
+Auto, dropbox-cli proxy auto
+Proxy, dropbox-cli proxy manual http 192.168.31.19 8080 1201371 8245

@@ -1,0 +1,27 @@
+window {
+    border:                 2px solid red;
+    background-color:       #333333; 
+}
+
+#input {
+    border:                 0px;
+    background-color:       #555555; 
+    font-size:              14px;
+    color:                  #FFFFFF;
+}
+
+
+#outer-box {
+    margin:                 10px;
+}
+
+#scroll {
+    margin:                 10px 0px;
+    color:                  #000000;
+}
+
+#scroll label {
+    margin:                 5px;
+    font-size:              14px;
+    color:                  #FFFFFF;
+}

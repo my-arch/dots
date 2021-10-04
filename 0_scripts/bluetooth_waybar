@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#TOOLTIP_=$(dropbox-cli status)
+#
+#if [ "$TOOLTIP_" = "Connected" ]; then
+#    CLASS_="Off"
+#else
+#    CLASS_="others"
+#fi
+#
+#text='""'
+#
+#echo {'"text"': $text, '"class"': '"'$CLASS_'"', '"tooltip"': '"'$TOOLTIP_'"', \
+#'"alt"': '"'$TOOLTIP_'"'}
+
+
+POWER=$(bluetoothctl show | grep Powered | awk '{print $2}')
+
+if [[ "$POWER" == "no" ]]; then
+    CLASS_="Off"
+    TOOLTIP_="Bluetooth Off"
+else
+    MI=$(pactl list sinks | grep -i "mi portable")
+
+    if [[ "$MI" == "" ]]; then
+        CLASS_="On"
+        TOOLTIP_="Bluetooth On"
+    else
+        CLASS_="Connected"
+        TOOLTIP_="Bluetooth Connected"
+    fi
+fi
+
+text='""'
+
+echo {'"text"': $text, '"class"': '"'$CLASS_'"', '"tooltip"': '"'$TOOLTIP_'"', '"alt"': '"'$TOOLTIP_'"'}

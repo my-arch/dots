@@ -1,0 +1,22 @@
+#!/bin/bash
+
+FILE=$HOME/Documents/8_Config/1_rofi/menu-script/todolist.txt
+
+if [[ -z "$@" ]]; then
+    cat $FILE
+else
+    if (grep -Fx "$@" $FILE) &>/dev/null; then
+        POS=$(grep -n -Fx "$@" $FILE | awk 'BEGIN {FS=":"}{print $1}' | \
+            head -n 1)
+        sed -i $POS'd' $FILE
+        cat ""
+        cat $FILE
+        #killall rofi
+        #rofi -theme ~/.config/i3/rofi/themes/menu.rasi -show 
+    else
+        echo "$@" >> $FILE
+        cat ""
+        cat $FILE
+        #echo "$@"
+    fi
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#rofi -theme ~/.config/i3/rofi/themes/menu.rasi -show 
+rofi -theme ~/.config/i3/rofi/themes/menu.rasi -show drun

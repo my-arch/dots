@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TYPE=$(gdbus call --session --dest org.fcitx.Fcitx5 --object-path /controller --method org.fcitx.Fcitx.Controller1.CurrentInputMethod)
+
+if [[ "${TYPE}" = "('keyboard-us',)" ]]; then
+	KB_OUTPUT="US"
+else
+	KB_OUTPUT="拼"
+fi
+
+echo $KB_OUTPUT

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#echo "Lock Screen"
+echo "懶  Play/Pause"
+echo "怜  Next"
+echo "玲  Previous"
+echo "栗  Stop"
+echo " N CMPCPP"
+
+echo "婢  Mute/Unmute"
+echo "  Volume Up"
+echo "  Volume Down"
+echo "  Toggle HDMI/AUX"
+echo "漣  Pavucontrol"
+
+if [ ! -z "$@" ]; then
+	QUERY=$@
+	#if [ "$@" = "Lock Screen" ]; then
+	#	i3lock
+	#	exit 0
+	#fi
+
+	if [ "$@" = " Log Out" ]; then
+		i3-msg exit
+		exit 0
+	fi
+
+	if [ "$@" = " Reboot" ]; then
+		systemctl reboot
+		exit 0
+	fi
+
+	if [ "$@" = " Shut Down" ]; then
+		systemctl poweroff
+		exit 0
+	fi
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+status=$(cat ~/.config/i3/keyboard/temp.txt)
+
+if [ "${status}" == "Normal" ]; then
+    echo "On  >  Off"
+elif [ "${status}" == "Numpad" ]; then
+    echo "On  <  Off"
+else
+    echo "?   Check"
+fi

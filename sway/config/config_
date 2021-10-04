@@ -1,0 +1,531 @@
+# ==========================================================
+# General System Settings
+# ==========================================================
+	# Define variables
+	set $mod            Mod4
+    set $term           alacritty
+    set $laptop         eDP-1
+    set $hdmi           HDMI-A-1
+    set $displayport    DP-3
+    set $vga            DP-5
+    set $fm             lf
+    set $editor         nvim
+    set $music_player   ncmpcpp
+	set $lock           swaylock -f -C ~/Documents/8_Config/sway/swaylock_config
+
+	# Use mouse+$mod to drag floating windows to their wanted position
+	floating_modifier $mod
+
+	xwayland enable
+
+    # Bar
+    #bar {
+    #    position bottom
+    #    #font "Roboto"
+    #    #status_command while $HOME/Documents/8_Config/sway/script/swaybar.sh; do sleep 1; done
+
+    #    #colors {
+    #    #    statusline #ffffff
+    #    #    background #000000AA
+    #    #    inactive_workspace #323232AA #323232AA #5c5c5cAA
+    #    #}
+    #    ##swaybar_command waybar
+    #}
+
+    # Copy paste, clipman
+    #exec wl-paste -t text --watch clipman store
+    #exec wl-paste -p -t text --watch clipman store --histpath="~/.local/share/clipman-primary.json"
+    
+    #exec clipman -d
+    #bindsym $mod+Shift+Insert exec clipman -s
+    #bindsym $mod+Insert exec clipman pick -t wofi
+
+    # Configure input
+    input * xkb_numlock enable
+
+    input "2:8:AlpsPS/2_ALPS_DualPoint_TouchPad" {
+        dwt enabled
+        tap enabled
+        drag enabled
+        natural_scroll disabled
+        scroll_method two_finger
+    }
+
+# ==========================================================
+# Appearance Customization
+# ==========================================================
+	# Font for bar and windows title
+	font pango:Ubuntu Mono 12
+    default_border pixel 2
+    hide_edge_borders --i3 smart
+
+    # =======================================================================================
+    # Windows                   #class      #border     #bg text    #indicator  #child_border
+    # =======================================================================================
+	#client.focused		        #606060		#606060 	#ffffff 	#2e9ef4 	#7EEEFF
+	client.focused		        #606060		#606060 	#ffffff 	#ff0000 	#ff0000
+	client.focused_inactive	    #000000		#000000 	#8b8b8b 	#484e50 	#5f676a
+	client.unfocused	        #000000		#000000 	#8b8b8b 	#292d2e 	#222222
+	client.urgent		        #2f343a		#900000 	#ffffff 	#900000 	#900000
+	client.placeholder	        #000000		#0c0c0c 	#ffffff 	#000000 	#0c0c0c
+
+    # Set gnome theme settings
+    exec_always gsettings set org.gnome.desktop.interface gtk-theme 'Adapta-Eta'
+    exec_always gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
+    exec_always gsettings set org.gnome.desktop.interface font-name 'Roboto 12'
+    #exec_always gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu 10'
+
+# ==========================================================
+# Workspaces Setting
+# ==========================================================
+	# Name workspaces
+	set $ws1 1
+	set $ws2 2
+	set $ws3 3
+	set $ws4 4
+	set $ws5 5
+	set $ws6 6
+	set $ws7 7
+	set $ws8 8
+	set $ws9 9
+	set $ws10 10
+
+	# Assign windows to workspaces
+	# Web browser
+	assign [app_id="firefox"] $ws1
+	for_window [app_id="firefox"] focus
+	assign [title="Firefox"] $ws1
+	for_window [title="Firefox"] focus
+	assign [app_id="qutebrowser"] $ws1
+	for_window [app_id="qutebrowser"] focus
+	assign [class="Min"] $ws1
+	for_window [class="Min"] focus
+
+	# Terminal
+	assign [app_id="xfce4-terminal"] $ws2
+	for_window [app_id="xfce4-terminal"] focus
+	assign [app_id="Alacritty"] $ws2
+	for_window [app_id="Alacritty"] focus
+	assign [app_id="org.pwmt.zathura"] $ws2
+
+	# Office documents
+	assign [class="Wpp|Wps|Et"] $ws3
+	for_window [class="Wpp|Wps|Et"] focus
+	assign [app_id="libreoffice"] $ws3
+	for_window [app_id="libreoffice"] focus
+	assign [app_id="soffice"] $ws3
+	for_window [app_id="soffice"] focus
+	assign [app_id="evince"] $ws3
+	for_window [app_id="evince"] focus
+	
+	# File manager
+	assign [app_id="thunar"] $ws4
+	for_window [app_id="thunar"] focus
+
+	# Multimedia
+	assign [app_id="mpv"] $ws4
+	for_window [app_id="mpv"] focus
+	assign [app_id="vlc"] $ws4
+	for_window [app_id="vlc"] focus
+	assign [app_id="pavucontrol"] $ws4
+	for_window [app_id="pavucontrol"] focus
+
+    # MATLAB
+	assign [class="MATLAB R2020a"] $ws5
+	assign [class="MATLAB R2018b"] $ws5
+	#for_window [class="MATLAB R2020a"] focus
+
+	# Photo/Video editing
+	assign [app_id="Gimp"] $ws6
+	for_window [app_id="Gimp"] focus
+
+	# Appearance
+	assign [app_id="Lxappearance"] $ws6
+	for_window [app_id="Lxappearance"] focus
+
+	# Teams & Chromium
+	assign [class="Microsoft Teams - Preview"] $ws9
+	for_window [class="Microsoft Teams - Preview"] focus
+	assign [app_id="zoom"] $ws9
+	for_window [app_id="zoom"] focus
+	assign [title="Chromium"] $ws9
+	for_window [title="Chromium"] focus
+
+    # Others
+    assign [class="Opera"] $ws9
+    for_window [class="Opera"] focus
+    assign [class="Tor Browser"] $ws9
+    for_window [class="Tor Browser"] focus
+
+    # Windows
+	assign [class="VirtualBox Manager"] $ws10
+	#for_window [class="VirtualBox Manager"] focus
+	assign [class="VirtualBox Machine"] $ws10
+	#for_window [class="VirtualBox Machine"] focus
+
+	# Switch workspaces
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+    # Recent workspaces
+    bindsym $mod+tab workspace back_and_forth
+
+	# Switch workspaces using numpad
+	bindsym $mod+Mod2+KP_1 workspace $ws1
+	bindsym $mod+Mod2+KP_2 workspace $ws2
+	bindsym $mod+Mod2+KP_3 workspace $ws3
+	bindsym $mod+Mod2+KP_4 workspace $ws4
+	bindsym $mod+Mod2+KP_5 workspace $ws5
+	bindsym $mod+Mod2+KP_6 workspace $ws6
+	bindsym $mod+Mod2+KP_7 workspace $ws7
+	bindsym $mod+Mod2+KP_8 workspace $ws8
+	bindsym $mod+Mod2+KP_9 workspace $ws9
+	bindsym $mod+Mod2+KP_0 workspace $ws10
+
+    # Alt - Tab
+    #bindsym Mod1+Tab exec rofi -show window -show-icons -config ~/.config/i3/rofi/switcher
+
+	# Switch to next/previous workspace
+	bindsym $mod+Escape	workspace prev_on_output
+	bindsym $mod+grave workspace next_on_output
+
+	# Move focused container to workspaces
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+	bindsym $mod+Shift+8 move container to workspace $ws8
+	bindsym $mod+Shift+9 move container to workspace $ws9
+	bindsym $mod+Shift+0 move container to workspace $ws10
+
+	# Move focused container to workspaces using numpad
+	bindsym $mod+Shift+Mod2+KP_End move container to workspace $ws1
+	bindsym $mod+Shift+Mod2+KP_Down	move container to workspace $ws2
+	bindsym $mod+Shift+Mod2+KP_Next	move container to workspace $ws3
+	bindsym $mod+Shift+Mod2+KP_Left	move container to workspace $ws4
+	bindsym $mod+Shift+Mod2+KP_Begin move container to workspace $ws5
+	bindsym $mod+Shift+Mod2+KP_Right move container to workspace $ws6
+	bindsym $mod+Shift+Mod2+KP_Home move container to workspace $ws7
+	bindsym $mod+Shift+Mod2+KP_Up move container to workspace $ws8
+	bindsym $mod+Shift+Mod2+KP_Prior move container to workspace $ws9
+	bindsym $mod+Shift+Mod2+KP_Insert move container to workspace $ws10
+
+	# Move workspace to output
+	bindsym $mod+Ctrl+Right move workspace to output right
+	bindsym $mod+Ctrl+Left move workspace to output left
+
+	# Back to last focused workspace
+	workspace_auto_back_and_forth yes
+
+# ==========================================================
+# Specific Window Layout Setting
+# ==========================================================
+    for_window [app_id="Drop-down"] floating enable  
+
+    #for_window [class="MATLAB R2018b"] floating enable  
+    #for_window [class="MATLAB R2020a"] floating enable  
+    
+    for_window [window_role="Float"] floating enable
+    no_focus [title="Command HistoryWindow"]
+    no_focus [title="FunctionHints"]
+
+    for_window [title="File Operation Progress"] floating enable  
+    for_window [app_id="zenity"] floating enable  
+
+    for_window [title="Microsoft Teams Notification"] floating enable
+    for_window [app_id="zoom"] floating enable
+    for_window [title="ms.microsoft.com is sharing your screen"] floating enable
+    for_window [title="^(Gnumeric Spreadsheet)$"] floating enable
+
+    #for_window [app_id="xfce4-terminal"] shortcuts_inhibitor deactivate
+    #for_window [app_id="thunar"] shortcuts_inhibitor activate
+    #for_window [class="VirtualBox Machine"] shortcuts_inhibitor deactivate
+    #for_window [class="VirtualBox Manager"] shortcuts_inhibitor enable
+    #for_window [app_id="qutebrowser"] inhibit_shortcuts focus
+
+    #seat * shortcuts_inhibitor enable
+    #for_window [app_id="thunar"] seat - shortcuts_inhibitor deactivate
+    #for_window [app_id="thunar"] shortcuts_inhibitor enable
+    #for_window [app_id="thunar"] inhibit_shortcuts visible
+
+    for_window [app_id="qutebrowser"] inhibit_idle fullscreen
+
+# ==========================================================
+# Keyboard Binding
+# ==========================================================
+	# Start terminal
+	bindsym $mod+Return exec $term
+    bindsym F11 exec $term --class="Drop-down" -e python3
+	bindsym F12 exec $term --class="Drop-down"
+
+	# Kill focused window
+	bindsym $mod+Shift+q kill
+
+	# Start wofi
+	bindsym $mod+d exec wofi -c ~/.config/sway/wofi/config \
+        -s ~/.config/sway/wofi/style.css -I -i
+
+	# Change focus
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
+
+	# Move focused window
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down 
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+	# Split in horizontal orientation
+	bindsym $mod+z split h
+
+	# Split in vertical orientation
+	bindsym $mod+x split v
+
+	# Full screen mode
+	bindsym $mod+f fullscreen toggle
+
+	# Change container layout (stacked, tabbed, toggle split)
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+	
+	# Toggle tiling / floating
+	bindsym $mod+Shift+space floating toggle
+	bindsym $mod+Shift+f floating enable, resize set 60ppt 95ppt, move position center
+
+	# Change focus between tiling / floating windows
+	bindsym $mod+space focus mode_toggle
+
+	# Focus the parent container
+	bindsym $mod+Shift+a focus parent
+
+	# Lock screen
+	bindsym Control+Mod1+Delete exec $lock
+
+	# Reload the configuration file
+	bindsym $mod+Shift+r reload
+
+	# Resize window (You can also use the mouse for that)
+	mode "resize" {
+		# these bindings trigger as soon as you enter the resize mode
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
+
+		# back to normal: enter or escape
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+	}
+
+	bindsym $mod+r mode "resize"
+	
+	# Directly resize
+	bindsym Mod1+Shift+q exec i3-msg resize grow width 5 px or 5 ppt
+	bindsym Mod1+Shift+a exec i3-msg resize shrink width 5 px or 5 ppt
+	bindsym Mod1+Shift+w exec i3-msg resize grow height 5 px or 5 ppt
+	bindsym Mod1+Shift+s exec i3-msg resize shrink height 5 px or 5 ppt
+
+	# Shut down
+	set $mode_system System >> (E)xit, (H)ibernate, (R)eboot, (S)hutdown
+    #, (s)uspend
+	mode "$mode_system" {
+		bindsym Shift+e exec i3-msg exit, mode "default"
+		#bindsym s       exec systemctl suspend, mode "default"
+		bindsym Shift+h exec systemctl hibernate, mode "default"
+		bindsym Shift+r exec systemctl reboot, mode "default"
+		bindsym Shift+s exec systemctl poweroff, mode "default" 
+
+		# back to normal: Enter or Escape
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+	}
+
+	bindsym $mod+ctrl+e exit
+	bindsym $mod+ctrl+q mode "$mode_system"
+
+	# Display
+    set $mode_display Display >> (m)External, (l)Laptop, (e)Extended, (u)UTAR
+    mode "$mode_display" {
+        bindsym m output $displayport enable, output $laptop disable
+        bindsym l output $displayport disable, output $laptop enable
+        bindsym e output $displayport enable, output $laptop enable
+        bindsym u output $vga enable, output $laptop disable
+        
+        # back to normal: enter or escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    #set $mode_display Display >> (v)VGA, (h)HDMI, (d)Display Port, (l)Laptop
+    #mode "$mode_display" {
+    #    bindsym v output $vga enable
+    #    bindsym h output $hdmi enable
+    #    bindsym d output $displayport enable
+    #    bindsym l output $laptop enable
+    #    
+    #    # back to normal: enter or escape
+    #    bindsym Return mode "default"
+    #    bindsym Escape mode "default"
+    #}
+
+	bindsym $mod+p mode "$mode_display"
+
+    #bindswitch lid:on output $laptop disable
+    #bindswitch lid:off output $laptop enable
+
+	# Show calendar
+	bindsym $mod+c exec zenity --calendar
+	#bindsym $mod+c exec $term --title="Calendar" -e "vim -c Calendar"
+
+	# Execute common applicatios
+	bindsym Mod1+f exec MOZ_ENABLE_WAYLAND=1 firefox
+	bindsym Mod1+$mod+c exec chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
+	bindsym Mod1+q exec qutebrowser
+
+	#bindsym Mod1+r exec $term --title="File Manager" -e $fm
+	bindsym Mod1+r exec $term -e $fm
+	bindsym Mod1+v exec $term -e $editor
+	bindsym Mod1+c exec $term --class="Drop-down" -e $music_player
+
+	#bindsym Mod1+t exec thunar
+	#bindsym Mod1+t exec GDK_BACKEND=wayland thunar
+	bindsym Mod1+t exec GDK_BACKEND=wayland thunar
+	#bindsym Mod1+m exec vlc
+	bindsym Mod1+m exec min
+
+	# Volume control for external keyboard
+	bindsym $mod+ctrl+Return exec "amixer set Master toggle"
+	bindsym $mod+ctrl+k exec "amixer set Master 5%+"
+	bindsym $mod+ctrl+j exec "amixer set Master 5%-"
+	
+	# Volume control for external keyboard
+	bindsym $mod+ctrl+Up exec "amixer set Master 5%+"
+	bindsym $mod+ctrl+Down exec "amixer set Master 5%-"
+
+	# Pulse audio controls
+	bindsym XF86AudioMute exec "amixer set Master toggle"
+	bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
+	bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
+
+    # MPD controls
+    bindsym XF86AudioNext exec mpc next
+    bindsym XF86AudioPlay exec mpc toggle
+    bindsym XF86AudioPrev exec mpc prev
+    bindsym XF86AudioStop exec mpc stop
+
+	# Sreen brightness controls
+	bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+	bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+
+	# Print screen
+    bindsym Mod1+Print exec "slurp | grim -g - ~/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png"
+    bindsym Print exec grim ~/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+    #bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+    bindsym --release $mod+Shift+s exec $HOME/.scrn/scrn
+    #bindsym $mod+Shift+s exec "killall flameshot; flameshot; flameshot gui"
+
+	# Scratchpad
+	bindsym $mod+Shift+minus move scratchpad
+	bindsym $mod+minus scratchpad show
+
+    # Reload waybar
+    bindsym Ctrl+Mod1+space exec $HOME/Documents/8_Config/sway/script/launch_waybar
+
+	# Show network manager
+	bindsym Mod1+i exec bash $HOME/Documents/8_Config/sway/script/network_wofi
+
+	# Show drop manager
+	bindsym Mod1+b exec bash $HOME/Documents/8_Config/sway/script/dropbox_wofi
+
+# ==========================================================
+# i3-gaps configuration
+# ==========================================================
+	smart_gaps on
+	#smart_borders on
+
+	gaps inner 10
+	bindsym $mod+q gaps inner current plus 5
+	bindsym $mod+a gaps inner current minus 5
+
+
+# ==========================================================
+# Startup Applications
+# ==========================================================
+    # Waybar
+    exec_always $HOME/Documents/8_Config/sway/script/launch_waybar
+    
+	# Run volume icon
+	#exec volumeicon
+
+	# Run network manager
+	#exec nm-applet
+
+	# Run fcitx
+	exec fcitx5
+
+	# Run dropbox
+	#exec dropbox
+	#exec onedrive --monitor
+
+	# Run polkit - to prompt authentication for password
+	exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+	# Auto-lock
+    #exec swayidle -w \
+    #    timeout 300 '$lock' \
+    #    timeout 600 'swaymsg "output * dpms off"' \
+    #        resume 'swaymsg "output * dpms on"'\
+    #    before-sleep '$lock'
+
+    exec swayidle -w \
+        timeout 300 '$lock' \
+        timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        timeout 30 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
+        resume 'if pgrep swaylock; then swaymsg "output * dpms on"; fi' \
+        before-sleep '$lock'
+
+	# Start printer applet
+	#exec /usr/share/system-config-printer/applet.py
+
+	# Start mako
+	exec mako
+
+    # Start xdg-desktop-portal for screen sharing
+    exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+    exec dbus-update-activation-environment 2>/dev/null && \
+         dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+# ==========================================================
+# Monitor and wallpaper Setup
+# ==========================================================
+    #output $hdmi mode --custom 2560x1080@60Hz
+    #output $laptop mode --custom 1366x768@60Hz
+    #output $docking mode --custom 1366x768@60Hz
+    exec_always $HOME/Documents/8_Config/sway/script/monitor
+
+    #output * bg $wallpaper fill
+    output "*" background "~/.cache/wallpaper" fill

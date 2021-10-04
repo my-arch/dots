@@ -1,0 +1,21 @@
+#!/bin/bash
+
+MUTED_COLOR="%{F#6b6b6b}"
+
+STATUS=$(pactl list sinks | grep hdmi)
+VOL=$(amixer get Master | grep % | grep Right | awk -F '[][]' '{print $2}')
+MUTED=$(pacmd list-sinks | grep mute | awk -F ' ' '{print $2}')
+
+if [[ "$MUTED" = "yes" ]]
+then
+    COLOR_=$MUTED_COLOR
+else
+    COLOR_=""
+fi
+
+if [[ "$STATUS" = "" ]]
+then
+    echo "$COLOR_ "
+else
+    echo "$COLOR_ "
+fi

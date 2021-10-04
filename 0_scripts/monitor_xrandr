@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# First argument: Primary monitor
+# Second argument: Secondary monitor
+#sleep 1
+
+if  xrandr | grep -q "HDMI1 c"; then
+	#xrandr --output "DP1-1" --auto
+	xrandr --output "HDMI1" --auto
+	xrandr --output "eDP1" --off
+fi
+
+if  xrandr | grep -q "DP1-3 c"; then
+	#xrandr --output "DP1-3" --mode 2560x1080_60.00
+	xrandr --output "DP1-3" --auto
+	xrandr --output "eDP1" --off
+fi
+
+~/.fehbg
+
+#killall dzen2
+#xmonad --restart

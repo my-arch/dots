@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+# Start window manager
+#export DE='xfce'
+
+# Setting for MATLAB Live Script
+#export _JAVA_AWT_WM_NONREPARENTING=1
+#export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+#export MESA_LOADER_DRIVER_OVERRIDE=i965 # MATLAB Software Rendering
+
+# Set mouse cursor for XMonad
+#xsetroot -cursor_name left_ptr
+#
+xrandr --newmode "2560x1080_60.00"  230.00  2560 2720 2992 3424  1080 1083 1093 1120 -hsync +vsync
+xrandr --addmode HDMI2 2560x1080_60.00
+
+# Start xmonad
+exec i3

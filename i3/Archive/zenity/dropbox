@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DB=$(zenity --list   --title="Dropbox - Connection" --column="Action" \
+    --column="Description" \
+    "Start" "Start dropbox" \
+    "Stop" "Stop dropbox" \
+    "None" "No proxy" \
+    "Proxy" "UTAR proxy" \
+    --height=210 --width=270)
+
+if [ "$DB" = "Start" ]; then
+	dropbox-cli start
+	exit 0
+fi
+
+if [ "$DB" = "Stop" ]; then
+	dropbox-cli stop
+	exit 0
+fi
+
+if [ "$DB" = "None" ]; then
+	dropbox-cli proxy none
+	exit 0
+fi
+
+if [ "$DB" = "Proxy" ]; then
+	dropbox-cli proxy manual http 192.168.31.19 8080 1201371 8245
+	exit 0
+fi

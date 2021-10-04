@@ -1,0 +1,121 @@
+@import "~/Documents/8_Config/1_rofi/colors/colors.rasi"
+
+* {
+    /* General */
+    text-font:                              "Ubuntu Mono 12";
+    icon-font:                              "Symbols Nerd Font 12";
+    icon-font-small:                        "Symbols Nerd Font 10";
+
+    listview-spacing:                       10px;
+
+    /*                                      top, rig, bot, lef */
+    window-padding:                         15px 15px 15px 15px;
+    prompt-padding:                         10px 5px;
+    element-padding:                        10px 10px 10px 10px;
+
+    prompt-margin:                          0px 0px 0px -5px;
+    inputbar-margin:                        0px 0px 10px 0px;
+
+    window-border:                          1px;
+    element-border:                         1px;
+}
+
+* {
+    font:                                   @icon-font;
+    background-color:                       @dark-grey;
+    text-color:                             @black;
+}
+
+#window {
+    location:                               5;
+    width:                                  350px;
+    height:                                 535px;
+    border:                                 @window-border;
+    border-color:                           @blue;
+    padding:                                @window-padding;
+    children:                               [ inputbar, horibox ];
+}
+
+#inputbar {
+    children:                               [ textbox-prompt-colon, prompt, entry ];
+    margin:                                 @inputbar-margin;
+}
+
+#textbox-prompt-colon {
+    font:                                   @icon-font;
+    text-color:                             @white;
+    padding:                                @prompt-padding;
+    expand:                                 false;
+    str:                                    "";
+    background-color:                       @dark-grey;
+}
+
+#prompt {
+    font:                                   @text-font;
+    text-color:                             @white;
+    padding:                                @prompt-padding;
+    margin:                                 @prompt-margin;
+    background-color:                       @dark-grey;
+}
+
+#entry {
+    font:                                   @text-font;
+    padding:                                @prompt-padding;
+    border:                                 1px;
+    border-color:                           @dark-grey;
+    text-color:                             @black;
+    font:                                   @text-font;
+    background-color:                       @white;
+}
+
+#horibox {
+    children:                               [ listview ];
+}
+
+#listview {
+    layout:                                 vertical;
+    spacing:                                @listview-spacing;
+    background-color:                       @clear;
+}
+
+#element-text {
+    background-color:                       @clear;
+}
+
+#element-icon {
+    size:                                   1.2em;
+    background-color:                       @clear;
+}
+
+#element {
+    padding:                                @element-padding;
+    background-color:                       @mid-grey;
+    font:                                   @text-font;
+    border:                                 @element-border;
+    border-color:                           @dark-grey;
+}
+
+#element.selected {
+    background-color:                       @white;
+    text-color:                             @black;
+    border-color:                           @dark-grey;
+}
+
+#element.active {
+    text-color:                             @black;
+    background-color:                       @grey;
+    border-color:                           @dark-grey;
+}
+
+#element.urgent {
+    text-color:                             @black;
+    background-color:                       @light-red;
+    border-color:                           @red;
+}
+
+element.selected.urgent,
+element.selected.active {
+    text-color:                             @black;
+    background-color:                       @red;
+    border-color:                           @red;
+}

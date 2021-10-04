@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Obtain names
+WIRED=$(nmcli c | grep ethernet | cut -c1-$(nmcli c | grep -aob "UUID" \
+    | grep -oE '[0-9]+') | sed 's/^[ \t]*//;s/[ \t]*$//')
+CURRENT=$(iwgetid -r)
+STATUS=$(nmcli n)
+INTERFACE="$(nmcli | grep -i interface | awk '/interface/ {print $2}')"
+
+if [[ $STATUS == "disabled" ]]; then
+    IFS=$'\n'
+    ARR=()
+    ARR+=("Others:")
+    ARR+=("Edit Connection")
+    ARR+=("On/Off Network Manager")
+    unset IFS
+
+    CHOICE=$(printf '%s\n' "${ARR[@]}" | rofi -dmenu \
+        -theme ~/Documents/8_Config/1_rofi/themes/network.rasi \
+        -config ~/Documents/8_Config/1_rofi/config/module.rasi \
+        -a 0 -u 2 -selected-row 1 \
+        -p "$CURRENT")
+else
+    IFS=$'\n'
+    ARR=()
+    ARR+=("      Wired Connection:")
+    ARR+=("$WIRED")
+    ARR+=("      WiFi:")
+    ARR+=("$(nmcli d wifi | awk '!/IN-USE/' | cut -c9-$(nmcli dev wifi \
+        | grep -aob "MODE"| grep -oE '[0-9]+') | cut -c20-)")
+    ARR+=("      Others:")
+    ARR+=("Rescan WiFi")
+    ARR+=("Edit Connection")
+    ARR+=("On/Off Network Manager")
+    unset IFS
+
+    CHOICE=$(printf '%s\n' "${ARR[@]}" | rofi -dmenu \
+        -theme ~/Documents/8_Config/1_rofi/themes/network.rasi \
+        -config ~/Documents/8_Config/1_rofi/config/module.rasi \
+        -a 0,2 \
+        -p "$CURRENT")
+fi
+
+if [[ $CHOICE == "" ]]; then
+	exit 0
+elif [[ $CHOICE == "Rescan Wifi" ]]; then
+	nmcli d wifi rescan
+elif [[ $CHOICE == "Edit Connection" ]]; then
+	nm-connection-editor
+	exit 0
+elif [[ $CHOICE == "On/Off Network Manager" ]]; then
+	if [[ $STATUS == "disabled" ]]; then
+        nmcli n on
+    else
+        nmcli n off
+    fi
+	exit 0
+else
+	nmcli c down $CURRENT
+	nmcli c up $CHOICE
+	exit 0
+fi

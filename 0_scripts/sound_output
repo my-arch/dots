@@ -1,0 +1,13 @@
+#!/bin/bash
+
+HDMI=$(pactl list sinks | grep hdmi)
+INTERNAL="alsa_card.pci-0000_00_1f.3"
+DOCK="alsa_card.usb-Generic_USB_Audio_200901010001-00"
+
+if [[ "$HDMI" == "" ]]; then
+    pactl set-card-profile $INTERNAL "output:hdmi-stereo+input:analog-stereo"
+    pactl set-card-profile $DOCK "off"
+else
+    pactl set-card-profile $INTERNAL "off"
+    pactl set-card-profile $DOCK "HiFi"
+fi

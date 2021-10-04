@@ -1,0 +1,64 @@
+# ==========================================================
+# General System Settings
+# ==========================================================
+	# Define variables
+	set $mod            Mod4
+    #set $term           xfce4-terminal
+    set $term           alacritty
+    set $laptop         eDP-1
+    set $hdmi           HDMI-A-1
+    set $displayport    DP-3
+    set $vga            DP-5
+    set $fm             lf
+    set $editor         nvim
+    set $music_player   ncmpcpp
+	set $lock           swaylock -f -C ~/Documents/8_Config/sway/swaylock_config
+
+	# Use mouse+$mod to drag floating windows
+	floating_modifier $mod
+
+    # Xwayland for x-applications
+	xwayland enable
+
+    # Configure input
+    input * xkb_numlock enable
+    #input * scroll_factor 0.4
+
+    input "1160:4618:DELL09BD:00_0488:120A_Touchpad" {
+        dwt enabled
+        tap enabled
+        drag enabled
+        natural_scroll disabled
+        scroll_method two_finger
+    }
+
+    # Configure cursor
+    set $cursor         'default'
+    set $cursor_size    '20'
+    seat seat0 xcursor_theme $cursor $cursor_size
+    exec_always {
+        gsettings set org.gnome.desktop.interface cursor-theme $cursor
+        gsettings set org.gnome.desktop.interface cursor-size $cursor_size
+    }
+
+    # Set gnome theme settings
+    exec_always {
+        gsettings set org.gnome.desktop.interface gtk-theme 'Adapta-Eta'
+        gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
+        gsettings set org.gnome.desktop.interface font-name 'Roboto 12'
+        gsettings set org.gnome.desktop.interface monospace-font-name 'Roboto Mono Medium 10'
+    }
+
+    # Start xdg-desktop-portal for screen sharing
+    # Added XDG_CURRENT_DESKTOP for flameshot
+    exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+    # Add hash if using bash
+    exec dbus-update-activation-environment 2>/dev/null && \
+         dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+    # Include other config files
+    include $HOME/Documents/8_Config/sway/config/colorscheme
+    include $HOME/Documents/8_Config/sway/config/autostart
+    include $HOME/Documents/8_Config/sway/config/windows
+    include $HOME/Documents/8_Config/sway/config/workspaces
+    include $HOME/Documents/8_Config/sway/config/bindings

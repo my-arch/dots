@@ -1,0 +1,8 @@
+#!/bin/bash
+
+info=$(lsof -wc vlc | awk '$4~"[0-9]r" && $5=="REG"' | grep -o '[^/.]*' | tail -n 3 | head -n 2)
+
+artist=$(echo "$info" | head -n 1)
+title=$(echo "$info" | tail -n 1)
+
+echo "$artist - $title"

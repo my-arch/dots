@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# This displays title & artist plus remote control of cmus
+
+full_text="Not Playing"
+short_text="$full_text"
+
+info=$(cmus-remote -Q 2> /dev/null)
+stopped=$($info | head -1 | awk '{print $2}')
+if [ "$?" -ne 0 ]; then
+	echo "Not Playing"
+
+	# Launch CMUS if no title
+	case $BLOCK_BUTTON in
+		1) xfce4-terminal -e cmus
+	esac
+  exit 0
+fi
+
+# Not working yet
+#if [ "$stopped" == "stopped" ]; then
+#	echo "Stopped"
+#
+#	# Play song
+#	case $BLOCK_BUTTON in
+#		1) cmus-remote -p
+#	esac
+#fi
+
+status=$(echo "$info" | grep "^status " | cut -d " " -f 2)
+artist=$(echo "$info" | grep "^tag artist " | tail -c +12)
+title=$(echo "$info" | grep "^tag title" | tail -c +11)
+
+
+if [ "$status" == "paused" ]
+then
+	icon=""
+elif [ "$status" == "stopped" ]
+then
+	echo ""
+	exit 0
+else
+	icon=""
+fi
+
+full_text=$(echo "$icon $artist - $title")
+
+#echo "$short_text"
+echo "$full_text"
+
+case $BLOCK_BUTTON in
+	1) cmus-remote -u;; #left click = toggle pause-play
+esac
+
+exit 0

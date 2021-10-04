@@ -1,0 +1,21 @@
+#!/bin/bash
+
+MUTED_COLOR="red"
+
+STATUS=$(pactl list sinks | grep hdmi)
+VOL=$(amixer get Master | grep % | grep Right | awk -F '[][]' '{print $2}')
+MUTED=$(pacmd list-sinks | grep mute | awk -F ' ' '{print $2}')
+
+if [[ "$STATUS" = "" ]]
+then
+    ICON=""
+else
+    ICON=""
+fi
+
+if [[ "$MUTED" = "yes" ]]
+then
+    echo "<fc=$MUTED_COLOR>$ICON $VOL</fc>"
+else
+    echo "$ICON $VOL"
+fi

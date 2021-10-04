@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# First argument: Primary monitor
+# Second argument: Secondary monitor
+if  xrandr | grep -q "$2 connected 1"; then
+    killall conky
+    conky -c ~/.config/i3/conky/conky_external
+else
+    killall conky
+    conky -c ~/.config/i3/conky/conky_laptop
+fi

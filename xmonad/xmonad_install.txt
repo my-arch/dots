@@ -1,0 +1,126 @@
+base-devel \
+pacman-contrib \
+linux-headers \
+libva-intel-driver \
+xf86-video-intel \
+xmonad \
+xmonad-contrib \
+haskell-dbus \
+xmobar \
+libmpd \
+ripgrep \
+xorg \
+xorg-server \
+xorg-xinit \
+xorg-xrandr \
+xautolock \
+i3lock \
+networkmanager \
+htop \
+systemd \
+xorg-xmessage \
+dunst \
+rofi \
+dmenu \
+dzen2 \
+feh \
+picom \
+xdotool \
+xdg-utils \
+flashplugin \
+pepper-flash \
+zip \
+unzip \
+
+virtualbox \
+scrot \
+volumeicon \
+
+qutebrowser \
+chromium \
+opera \
+opera-ffmpeg-codecs \
+mps-youtube
+
+zathura \
+zathura-pdf-mupdf \
+zathura-djvu \
+imagemagick \
+ghostscript \
+
+gvim \
+libreoffice-fresh \
+
+ntfs-3g \
+gvfs \
+gvfs-mtp \
+thunar \
+ranger \
+thunar-volman \
+polkit-gnome \
+
+mpd \
+ncmpcpp \
+mpc \
+mpv \
+imv \
+feh \
+
+fcitx5 \
+fcitx5-qt \
+fcitx5-gtk \
+fcitx5-chinese-addons \
+fcitx5-configtool \
+
+ttf-roboto \
+ttf-roboto-mono \
+ttf-ubuntu-font-family \
+ttf-font-awesome \
+wqy-zenhei \
+wqy-bitmapfont \
+wqy-microhei \
+wqy-microhei-lite \
+termsyn-font \
+
+alsa-utils \
+alsa-firmware \
+pulseaudio \
+pulseaudio-alsa \
+pavucontrol \
+pamixer \
+wildmidi \
+qalculate-gtk \
+adapta-gtk-theme \
+redshift \
+
+powertop \
+
+texlive-core \
+texlive-bin \
+texlive-most \
+texlive-langchinese \
+
+###########
+# MATLAB
+###########
+libselinux
+jre8-openjdk
+jdk8-openjdk
+
+###########
+# yay
+###########
+xmonad-log \
+lf \
+onedrive-abraunegg \
+
+la-capitaine-icon-theme \
+
+termsyn-font \
+
+pdfjs \
+
+polybar-git \
+polybar-fcitx-scripts
+
+powershell-bin

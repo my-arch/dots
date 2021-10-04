@@ -1,0 +1,8 @@
+#!/bin/bash
+
+virsh net-start default
+virsh start RDPWindows
+xfreerdp /u:chew /d:RDPWindows /p:password_here /v:192.168.122.173  +auto-reconnect +clipboard +home-drive -wallpaper /dynamic-resolution /app:"C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.exe" &
+sleep 10s
+killall xfreerdp
+wlfreerdp /u:chew /d:RDPWindows /p:password_here /v:192.168.122.173 +auto-reconnect +clipboard +home-drive -wallpaper /dynamic-resolution /app:"C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.exe"

@@ -1,0 +1,446 @@
+# ==========================================================
+# General System Settings
+# ==========================================================
+	# Set default modifier key
+	set $mod Mod4
+
+	# Use Mouse+$mod to drag floating windows to their wanted position
+	floating_modifier $mod
+
+    # Define variables
+    set $term xfce4-terminal
+    set $fm lf
+    set $music ncmpcpp
+
+# ==========================================================
+# Appearance Customization
+# ==========================================================
+	# Font for bar and windows title
+	font pango:Roboto 14
+    title_align center
+	for_window [class="^.*"] border pixel 2
+
+	# Polybar
+	exec_always --no-startup-id $HOME/Documents/8_Config/2_polybar/poly_bottom
+
+	# Window colors             <border> <background> <text> <indicator> <child_border>
+	client.focused		        #606060		#606060 	#ffffff 	#2e9ef4 	#ff0000
+	client.focused_inactive	    #000000		#000000 	#8b8b8b 	#484e50 	#5f676a
+	client.unfocused	        #000000		#000000 	#8b8b8b 	#292d2e 	#222222
+	client.urgent		        #2f343a		#900000 	#ffffff 	#900000 	#900000
+	client.placeholder	        #000000		#0c0c0c 	#ffffff 	#000000 	#0c0c0c
+
+# ==========================================================
+# Specific Window Layout Setting
+# ==========================================================
+    # browser pop-ups
+    for_window [window_role="pop-up"] floating enable
+    #for_window [window_role="browser-window" class="^(?!Microsoft Teams - Preview$)"] floating enable
+    for_window [title="Microsoft Teams Notification"] floating enable
+    for_window [title="^(?Zoom$)"] floating enable
+    for_window [title="Microsoft Teams Notification"] resize set 640 480
+    for_window [title="Microsoft Teams Notification"] focus
+    for_window [window_role="Float"] floating enable
+    for_window [class="RAIL"] floating enable
+	
+    #for_window [instance="*ncmpcpp*"] floating enable
+
+# ==========================================================
+# Workspaces Setting
+# ==========================================================
+	# Name workspaces
+	set $ws1 1
+	set $ws2 2
+	set $ws3 3
+	set $ws4 4
+	set $ws5 5
+	set $ws6 6
+	set $ws7 7
+	set $ws8 8
+	set $ws9 9
+	set $ws10 10
+
+	# Assign windows to workspaces
+	# Web browser
+	assign [class="firefox"] $ws1
+	for_window [class="firefox"] focus	
+	assign [class="qutebrowser"] $ws1
+	for_window [class="qutebrowser"] focus
+
+	# Terminal
+	assign [class="URxvt"] $ws2
+	for_window [class="URxvt"] focus
+	assign [class="Alacritty"] $ws2
+	for_window [class="Alacritty"] focus
+	assign [class="Xfce4-terminal" window_role="^(?!Float$)"] $ws2
+	for_window [class="Xfce4-terminal"] focus
+
+	# Office documents
+	assign [class="Evince"] $ws3
+	for_window [class="Evince"] focus
+	#assign [class="Zathura"] $ws3
+	#for_window [class="Zathura"] focus
+	assign [class="libreoffice-startcenter|Soffice"] $ws3
+	for_window [class="libreoffice-startcenter|Soffice"] focus
+	assign [class="Wps|Wpp|Et"] $ws3
+	for_window [class="Wps|Wpp|Et"] focus
+	assign [class="Xournalpp"] $ws3
+	for_window [class="Xournalpp"] focus
+	assign [class="Gvim"] $ws3
+	for_window [class="Gvim"] focus
+	
+	# File manager
+	assign [class="Thunar"] $ws4
+	for_window [class="Thunar"] focus
+
+	# Multimedia
+	assign [class="vlc"] $ws4
+	for_window [class="vlc"] focus
+	assign [class="mpv"] $ws4
+	for_window [class="mpv"] focus
+	assign [class="Pavucontrol"] $ws4
+	for_window [class="Pavucontrol"] focus
+
+	# MATLAB
+	assign [class="MATLAB R2020a - academic use"] $ws5
+	for_window [class="MATLAB R2020a - academic use"] focus
+	assign [class="MATLAB R2020a"] $ws5
+	for_window [class="MATLAB R2020a"] focus
+
+	# Photo/Video editing
+	assign [class="Gimp"] $ws6
+	for_window [class="Gimp"] focus
+
+	# Appearance
+	assign [class="Lxappearance"] $ws6
+	for_window [class="Lxappearance"] focus
+
+	# Other browsers
+	assign [class="Opera"] $ws9
+	for_window [class="Opera"] focus	
+	assign [class="Microsoft Teams - Preview" instance="^(?!Microsoft Teams Notification$)"] $ws9
+	for_window [class="Microsoft Teams - Preview"] focus
+	assign [class="zoom"] $ws9
+	assign [class="Chromium"] $ws9
+	for_window [class="Chromium"] focus	
+
+	# Others
+	assign [class="VirtualBox*"] $ws10
+	for_window [class="VirtualBox*"] focus
+
+	# Switch workspaces
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	Bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+	# Switch workspaces using numpad
+	bindsym $mod+Mod2+KP_1 workspace $ws1
+	bindsym $mod+Mod2+KP_2 workspace $ws2
+	bindsym $mod+Mod2+KP_3 workspace $ws3
+	bindsym $mod+Mod2+KP_4 workspace $ws4
+	bindsym $mod+Mod2+KP_5 workspace $ws5
+	bindsym $mod+Mod2+KP_6 workspace $ws6
+	bindsym $mod+Mod2+KP_7 workspace $ws7
+	bindsym $mod+Mod2+KP_8 workspace $ws8
+	bindsym $mod+Mod2+KP_9 workspace $ws9
+	bindsym $mod+Mod2+KP_0 workspace $ws10
+
+	# Switch to next/previous workspace
+	bindsym $mod+Escape	workspace prev_on_output
+	bindsym $mod+Tab	workspace next_on_output
+	bindsym $mod+asciitilde	workspace next_on_output
+
+	# Move focused container to workspaces
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+	bindsym $mod+Shift+8 move container to workspace $ws8
+	bindsym $mod+Shift+9 move container to workspace $ws9
+	bindsym $mod+Shift+0 move container to workspace $ws10
+
+	# Move focused container to workspaces using numpad
+	bindsym $mod+Shift+Mod2+KP_End move container to workspace $ws1
+	bindsym $mod+Shift+Mod2+KP_Down	move container to workspace $ws2
+	bindsym $mod+Shift+Mod2+KP_Next	move container to workspace $ws3
+	bindsym $mod+Shift+Mod2+KP_Left	move container to workspace $ws4
+	bindsym $mod+Shift+Mod2+KP_Begin move container to workspace $ws5
+	bindsym $mod+Shift+Mod2+KP_Right move container to workspace $ws6
+	bindsym $mod+Shift+Mod2+KP_Home move container to workspace $ws7
+	bindsym $mod+Shift+Mod2+KP_Up move container to workspace $ws8
+	bindsym $mod+Shift+Mod2+KP_Prior move container to workspace $ws9
+	bindsym $mod+Shift+Mod2+KP_Insert move container to workspace $ws10
+
+	# Move workspace to output
+	bindsym $mod+Ctrl+Right move workspace to output right
+	bindsym $mod+Ctrl+Left move workspace to output left
+
+	# Rename workspace
+	bindsym $mod+n exec --no-startup-id i3-input -F 'rename workspace to %s' -P 'New name: '
+
+	# Back to last focused workspace
+	workspace_auto_back_and_forth yes
+
+# ==========================================================
+# Keyboard Binding
+# ==========================================================
+	# Start terminal
+	#bindsym $mod+Return exec i3-sensible-terminal
+	bindsym $mod+Return exec $term
+	bindsym F11 exec xfce4-terminal --role "Float" --drop-down --hide-menubar -e python3
+	bindsym F12 exec xfce4-terminal --role "Float" --drop-down --hide-menubar
+
+	# Kill focused window
+	bindsym $mod+Shift+q kill
+
+	# Start dmenu (a program launcher)
+	#bindsym $mod+d exec --no-startup-id ~/.config/i3/rofi/scripts/menu
+	bindsym $mod+d exec --no-startup-id rofi -show drun -theme $HOME/Documents/8_Config/1_rofi/themes/menu.rasi -show drun
+
+	# Change focus
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
+
+	# Move focused window
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+
+	# Move focused window
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down 
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+	# Split in horizontal orientation
+	bindsym $mod+z split h
+
+	# Split in vertical orientation
+	bindsym $mod+x split v
+
+	# Full screen mode
+	bindsym $mod+f fullscreen toggle
+
+	# Change container layout (stacked, tabbed, toggle split)
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+	bindsym $mod+Shift+e exec --no-startup-id "i3-msg move to left && i3-msg resize grow width 25 px or 25 ppt"
+
+	# Toggle tiling / floating
+	bindsym $mod+Shift+space floating toggle
+	bindsym $mod+Shift+f floating enable, resize set 60ppt 95ppt, move position center
+	#bindsym $mod+Shift+f floating enable, resize shrink width 100000px, resize grow width 1400px, resize shrink height 100000px, resize grow height 700px, move position center
+
+	# Change focus between tiling / floating Windows
+	bindsym $mod+space focus mode_toggle
+
+	# Focus the parent container
+	bindsym $mod+Shift+a focus parent
+
+	# Focus the child container
+	# bindsym $mod+d focus child
+
+	# Lock screen
+	bindsym Control+Mod1+Delete exec --no-startup-id ~/.config/i3/i3lock/blurlock.sh
+
+	# Reload the configuration file
+	bindsym $mod+Shift+c reload
+
+    bindsym $mod+m exec --no-startup-id bash /home/chew/Videos/.images/run
+
+	# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+	bindsym $mod+Shift+r restart
+
+	# Resize window (you can also use the mouse for that)
+	#mode "resize" {
+	#	# these bindings trigger as soon as you enter the resize mode
+	#	bindsym Left resize shrink width 10 px or 10 ppt
+	#	bindsym Down resize grow height 10 px or 10 ppt
+	#	bindsym Up resize shrink height 10 px or 10 ppt
+	#	bindsym Right resize grow width 10 px or 10 ppt
+
+	#	# back to normal: Enter or Escape
+	#	bindsym Return mode "default"
+	#	bindsym Escape mode "default"
+	#}
+
+	#bindsym $mod+r mode "resize"
+	
+	# Directly resize
+	bindsym Mod1+Shift+q exec --no-startup-id i3-msg resize grow width 5 px or 5 ppt
+	bindsym Mod1+Shift+a exec --no-startup-id i3-msg resize shrink width 5 px or 5 ppt
+	bindsym Mod1+Shift+w exec --no-startup-id i3-msg resize grow height 5 px or 5 ppt
+	bindsym Mod1+Shift+s exec --no-startup-id i3-msg resize shrink height 5 px or 5 ppt
+
+	# Remove mouse focus
+	# focus_follows_mouse no
+
+	# Shut down
+	set $mode_system System >> (E)xit, (s)uspend, (H)ibernate, (R)eboot, (S)hutdown
+	#set $mode_system --- System: (l) lock,  (e) logout,  (r) reboot,  (S) shutdown ---
+	mode "$mode_system" {
+		#bindsym l       exec --no-startup-id ~/.config/i3/i3lock/blurlock.sh, mode "default"
+		bindsym Shift+e exec --no-startup-id i3-msg exit, mode "default"
+		bindsym s       exec --no-startup-id systemctl suspend, mode "default"
+		bindsym Shift+h exec --no-startup-id systemctl hibernate, mode "default"
+		bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+		bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default" 
+
+		# back to normal: enter or escape
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+	}
+
+	bindsym $mod+ctrl+q mode "$mode_system"
+
+	# Display
+	set $mode_display System (d) Duplicate, (e) Extended, (l) Laptop, (m) External-Monitor
+	bindsym $mod+p mode "$mode_display"
+
+	mode "$mode_display" {
+	    # UTAR Acer
+	    #bindsym d exec --no-startup-id xrandr --output eDP1 --auto --output DP2 --auto && ~/.fehbg
+	    #bindsym e exec --no-startup-id xrandr --output eDP1 --auto --output DP2 --auto --above eDP1 && ~/.fehbg
+	    #bindsym l exec --no-startup-id xrandr --output eDP1 --auto --output DP2 --off && ~/.fehbg
+	    #bindsym m exec --no-startup-id xrandr --output eDP1 --off --output DP2 --auto && ~/.fehbg
+
+        # 29WK600
+	    bindsym d exec --no-startup-id xrandr --output eDP-1 --auto --output DP-1 --auto
+	    bindsym e exec --no-startup-id xrandr --output eDP-1 --auto --output DP-1 --auto --left-of eDP-1
+	    bindsym l exec --no-startup-id xrandr --output eDP-1 --auto --output DP-1 --off
+	    bindsym m exec --no-startup-id xrandr --output eDP-1 --off --output DP-1 --auto && ~/.fehbg
+        
+	    # back to normal: enter or escape
+	    bindsym Return mode "default"
+	    bindsym Escape mode "default"
+	}
+
+	# Show calendar
+	bindsym $mod+c exec zenity --calendar
+
+	# Execute common applicatios
+	bindsym Mod1+f exec --no-startup-id firefox
+	#bindsym Mod1+o exec --no-startup-id opera --disable-features=NetworkService --proxy-pac-url="file:///home/chew/.config/browser/proxy.pac"
+	#bindsym Mod1+w exec --no-startup-id chromium --proxy-pac-url="file:///home/chew/.config/browser/proxy.pac"
+	#bindsym Mod1+w exec --no-startup-id brave --proxy-pac-url="file:///home/chew/.config/browser/proxy.pac"
+	bindsym Mod1+q exec --no-startup-id qutebrowser
+	bindsym Mod1+m exec --no-startup-id min
+
+	bindsym Mod1+r exec --no-startup-id $term -e $fm
+	bindsym Mod1+v exec --no-startup-id $term -e vim
+	#bindsym Mod1+c exec --no-startup-id $term -e $music
+	bindsym Mod1+c exec --no-startup-id xfce4-terminal -e $music --role "Float"
+
+	bindsym Mod1+t exec --no-startup-id thunar
+	#bindsym Mod1+m exec --no-startup-id vlc
+
+	bindsym Mod1+i exec --no-startup-id $HOME/Documents/8_Config/0_scripts/network
+
+
+	# Volume control for external keyboard
+	bindsym $mod+ctrl+k exec "amixer set Master 5%+"
+	bindsym $mod+ctrl+j exec "amixer set Master 5%-"
+	bindsym $mod+ctrl+Return exec "amixer set Master toggle"
+    bindsym $mod+ctrl+1 exec mpc toggle
+	
+	# Volume control for external keyboard
+	bindsym $mod+ctrl+Up exec "amixer set Master 5%+"
+	bindsym $mod+ctrl+Down exec "amixer set Master 5%-"
+
+	# Pulse audio controls
+	bindsym XF86AudioMute exec amixer set Master toggle
+	bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+	bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+
+    # MPD controls
+    bindsym XF86AudioNext exec mpc next
+    bindsym XF86AudioPlay exec mpc toggle
+    bindsym XF86AudioPrev exec mpc prev
+    bindsym XF86AudioStop exec mpc stop
+
+	# CMUS controls
+    #bindsym XF86AudioNext exec cmus-remote --next
+    #bindsym XF86AudioPlay exec cmus-remote --pause
+    #bindsym XF86AudioPrev exec cmus-remote --prev
+    #bindsym XF86AudioStop exec cmus-remote --stop
+
+	# Sreen brightness controls
+	#bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+	#bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+	bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+	bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+
+	# Print screen
+	bindsym --release Print exec "scrot $HOME/$(date +%F_%H%M%S_%N).png"
+    bindsym --release $mod+Print exec "scrot -s $HOME/$(date +%F_%H%M%S_%N).png"
+    bindsym --release $mod+Shift+s exec "killall flameshot; flameshot; flameshot gui"
+
+	# Scratchpad
+	bindsym $mod+Shift+minus move scratchpad
+	bindsym $mod+minus scratchpad show
+
+# ==========================================================
+# i3-gaps configuration
+# ==========================================================
+	smart_gaps on
+	smart_borders on
+
+	gaps inner 10
+
+	bindsym $mod+q gaps inner current plus 5
+	bindsym $mod+a gaps inner current minus 5
+
+
+# ==========================================================
+# Startup Applications
+# ==========================================================
+	# Choose external monitor if exist
+	exec --no-startup-id bash $HOME/Documents/8_Config/0_scripts/monitor_xrandr
+
+	# Enable touchpad touch to click
+	exec --no-startup-id synclient VertEdgeScroll=1 TapButton1=1 TapButton2=3 TapButton3=1
+
+	# Run ibus
+	#exec --no-startup-id ibus-daemon -drx
+	exec --no-startup-id fcitx5
+
+	# Run dropbox
+	exec --no-startup-id dropbox
+
+	# Enable compton
+    exec picom --config $HOME/Documents/8_Config/5_picom/picom.conf
+
+
+	# Set wallpaper
+	exec --no-startup-id ~/.fehbg
+
+	# Run polkit
+	exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+	# Auto-lock
+	exec --no-startup-id xautolock -corners 0-+0 -time 5 -locker '$HOME/Documents/8_Config/3_i3lock/blurlock.sh'
+
+	# Start printer applet
+	#exec --no-startup-id /usr/share/system-config-printer/applet.py
+
+	# Start dunst
+	exec --no-startup-id dunst -config $HOME/Documents/8_Config/4_dunst/dunstrc

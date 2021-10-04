@@ -1,0 +1,454 @@
+; Dark theme
+; =============================
+; 	Color
+; =============================
+[colors]
+background                          = #1A1A1A
+background-alt                      = #2A2A2A
+background-alt2                     = #777777
+foreground                          = #FFFFFF
+foreground-alt                      = #D0D0D0
+
+launcher                            = #FFFFFF
+launcher1                           = #FFFFFF
+launcher2                           = #FFFFFF
+launcher3                           = #FFFFFF
+launcher4                           = #FFFFFF
+launcher5                           = #FFFFFF
+border                              = #10000000
+
+white                               = #FFFFFF
+black                               = #000000
+red                                 = #FF0000
+red-alt                             = #CC6666
+red-alt2                            = #FF5555
+yellow                              = #F0C674
+yellow-alt                          = #F8DFB0
+blue                                = #7FA0BC
+blue-alt                            = #7EEEFF
+green                               = #B3BB67
+green-alt                           = #AAFF77
+green-alt2                          = #0CFF00
+green-alt3                          = #C0E341
+orange                              = #FBA922
+orange-alt                          = #FABD2F
+pink                                = #FE715D
+pink-alt                            = #FDA78C
+
+; ============================
+;	Bar Settings
+; ============================
+[bar/bar]
+;monitor                            = ${env:MONITOR:eDP-1}
+height                              = 30
+bottom                              = true
+background                          = ${colors.background-alt}
+foreground                          = ${colors.foreground}
+border-top-size                     = 0
+border-bottom-size                  = 0
+border-left-size                    = 0
+border-right-size                   = 0
+border-color                        = ${colors.border}
+
+radius-top                          = 0
+radius-bottom                       = 0
+
+line-size                           = 2
+
+padding-left                        = 0
+padding-right                       = 0
+
+;separates different modules
+module-margin-left                  = 1
+module-margin-right                 = 1
+
+;tray-position = right
+
+font-0                              = Roboto:size=9;1
+font-1                              = Font Awesome 5 Brands:size=10.5;1
+font-2                              = Font Awesome 5 Free:size=10.5;1
+font-3                              = Font Awesome 5 Free:style=solid:size=10.5;1
+font-4                              = WenQuanYi Zen Hei:size=8;1
+
+modules-left                        = mpd
+modules-center                      = i3
+modules-right                       = toggle_sound pulseaudio dropbox battery conn clock
+
+
+; ============================
+;	Workspaces
+; ============================
+[module/i3]
+ws-icon-0                           = 1;一
+ws-icon-1                           = 2;二
+ws-icon-2                           = 3;三
+ws-icon-3                           = 4;四
+ws-icon-4                           = 5;五
+ws-icon-5                           = 6;六
+ws-icon-6                           = 7;七
+ws-icon-7                           = 8;八
+ws-icon-8                           = 9;九
+ws-icon-9                           = 10;十
+
+type                                = internal/i3
+format                              = <label-state> <label-mode>
+index-sort                          = true
+wrapping-scroll                     = false
+
+strip-wsnumbers                     = true
+
+label-focused                       = %icon%
+label-focused-foreground            = ${colors.black}
+label-focused-background            = ${colors.green-alt3}
+label-focused-padding               = 4
+
+label-visible                       = %icon%
+label-visible-foreground            = ${colors.white}
+label-visible-background            = ${colors.background-alt}
+label-visible-padding               = 4
+
+label-urgent                        = %icon%
+label-urgent-foreground             = ${colors.red}
+label-urgent-background             = ${colors.background-alt2}
+label-urgent-padding                = 4
+
+label-unfocused                     = %icon%
+label-unfocused-foreground          = ${colors.white}
+label-unfocused-background          = ${colors.background-alt}
+label-unfocused-padding             = 4
+
+
+
+; ============================
+;	Launcher
+; ============================
+[module/menu]
+type                                = custom/text
+content                             = " "
+content-foreground                  = ${colors.white}
+click-left                          = rofi -show drun -config ~/.config/i3/rofi/menu
+
+[module/term]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.launcher1}
+click-left                          = xfce4-terminal &
+
+[module/fx]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.launcher2}
+click-left                          = firefox &
+
+[module/editor]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.launcher3}
+click-left                          = xfce4-terminal -e vim &
+click-right                         = gvim &
+
+[module/fm]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.launcher4}
+click-left                          = xfce4-terminal -e ranger &
+click-right                         = thunar &
+
+[module/music]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.launcher5}
+click-left                          = xfce4-terminal -e cmus &
+
+
+; ============================
+;   Music
+; ============================
+[module/mpd]
+type = internal/mpd
+format-online =  <icon-random>  <icon-prev>  <toggle>  <icon-next>  <icon-repeat>  <label-song>   <bar-progress>
+
+format-offline                      = <label-offline>
+format-offline-foreground           = #77
+label-offline                       = mpd is offline
+
+icon-prev                           = 
+icon-stop                           = 
+icon-play                           = 
+icon-pause                          = 
+icon-next                           = 
+icon-seekf                          = >>
+icon-random                         = 
+icon-repeat                         = 
+
+label-song                          = %artist% - %title%
+
+icon-prev-foreground                = #77
+icon-stop-foreground                = #77
+icon-play-foreground                = #77
+icon-pause-foreground               = #77
+icon-next-foreground                = #77
+icon-seekf-foreground               = #77
+icon-random-foreground              = #77
+icon-repeat-foreground              = #77
+
+icon-prev-padding                   = 1
+icon-random-padding                 = 1
+icon-pause-padding                  = 1
+icon-next-padding                   = 1
+icon-repeat-padding                 = 1
+
+label-song-foreground               = #ff
+
+toggle-on-foreground                = #55
+toggle-off-foreground               = #ff
+
+; Only applies if <bar-progress> is used
+bar-progress-width                  = 10
+bar-progress-indicator              = ▋
+bar-progress-indicator-foreground   = ${colors.green-alt}
+bar-progress-fill                   = ▋
+bar-progress-fill-foreground        = ${colors.blue-alt}
+bar-progress-empty                  = ▃
+bar-progress-empty-foreground       = ${colors.background-alt2}
+
+[module/pomo]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/pomo_status
+label-foreground                    = ${colors.yellow}
+label-padding                       = 2
+
+[module/kb]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/numpad
+label-foreground                    = ${colors.green}
+label-padding                       = 2
+
+[module/cmus]
+type                                = custom/script
+interval                            = 5
+exec                                = bash ~/.config/i3/bar/polybar/module/cmus
+label                               = %{A: cmus-remote -u:}%output%%{A}
+label-foreground                    = ${colors.green}
+label-padding                       = 2
+
+[module/next]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.orange-alt}
+click-left                          = cmus-remote --next
+
+[module/prev]
+type                                = custom/text
+content                             = 
+content-foreground                  = ${colors.orange-alt}
+click-left        =                  cmus-remote --prev
+
+[module/mpris]
+type                                = custom/script
+exec                                = ~/.config/i3/bar/polybar/module/mpris
+interval                            = 3
+click-left                          = playerctl previous
+click-right                         = playerctl next
+click-middle                        = playerctl play-pause
+label-foreground                    = ${colors.orange}
+
+; ============================
+;	System Info
+; ============================
+[module/cpu]
+type                                = internal/cpu
+format                              = <label> <bar-load>
+label                               = 
+label-foreground                    = ${colors.foreground}
+
+bar-load-width                      = 10
+bar-load-foreground-0               = ${colors.green-alt}
+bar-load-foreground-1               = ${colors.orange}
+bar-load-foreground-2               = ${colors.red}
+bar-load-indicator                  =
+bar-load-indicator-foreground       = ${colors.white}
+bar-load-fill                       = =
+bar-load-empty                      = =
+bar-load-empty-foreground           = ${colors.background-alt2}
+
+[module/memory]
+type                                = internal/memory
+format                              = <label> <bar-used>
+label                               = 
+label-foreground                    = ${colors.foreground}
+
+bar-used-width                      = 10
+bar-used-foreground-0               = ${colors.green-alt}
+bar-used-foreground-1               = ${colors.orange}
+bar-used-foreground-2               = ${colors.red}
+bar-used-indicator                  = 
+bar-used-indicator-foreground       = ${colors.white}
+bar-used-fill                       = =
+bar-used-empty                      = =
+bar-used-empty-foreground           = ${colors.background-alt2}
+
+
+; ============================
+;	Other Info
+; ============================
+[module/xkeyboard]
+type                                = internal/xkeyboard
+format-prefix                       = " "
+format-prefix-foreground            = ${colors.foreground}
+label-layout                        = %layout%
+label-indicator-padding             = 1
+label-indicator-margin              = 1
+label-indicator-foreground          = ${colors.green}
+
+[module/ibus]
+type                                = custom/script
+interval                            = 1
+exec                                = echo "$(if [ "$(ibus engine)" = "googlepinyin" ]; then (echo "拼"); else (echo "EN"); fi)"
+label-foreground                    = ${colors.orange-alt}
+label-padding                       = 2
+
+[module/volume]
+type                                = internal/volume
+format-volume                       = <ramp-volume> <label-volume>
+label-volume                        = %percentage%%
+label-volume-foreground             = ${root.foreground}
+format-muted                        = <label-muted>
+format-muted-foreground             = ${colors.foreground}
+label-muted                         =  ──
+ramp-volume-0                       = 
+ramp-volume-1                       = 
+ramp-volume-foreground              = ${colors.foreground}
+
+[module/pulseaudio]
+type                                = internal/pulseaudio
+sink                                = alsa_output.pci-0000_12_00.3.analog-stereo
+use-ui-max                          = false
+interval                            = 5
+
+label-muted                         =  ---------
+
+format-volume                       = <label-volume>
+;format-volume                       = <ramp-volume> <label-volume>
+format-volume-foreground            = ${colors.foreground}
+format-volume-padding               = 2
+ramp-volume-0                       = 
+ramp-volume-1                       = 
+
+label-muted-foreground              = #6b6b6b
+label-muted-padding                 = 2
+
+[module/toggle_sound]
+type                                = custom/script
+interval                            = 1
+exec                                = ~/.config/i3/bar/polybar/module/sound_label
+click-left                          = ~/.config/i3/bar/polybar/module/sound_output &
+scroll-up                           = amixer set Master 5%+
+scroll-down                         = amixer set Master 5%-
+
+[module/dropbox]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/dropbox
+label-foreground                    = ${colors.foreground}
+label                               = %{A1: bash ~/.config/i3/rofi/scripts/dropbox:}%output%%{A}
+label-padding                       = 2
+
+[module/battery]
+type                                = internal/battery
+battery                             = BAT0
+adapter                             = AC
+full-at                             = 98
+format-charging                     = <animation-charging> <label-charging> 
+format-discharging                  = <ramp-capacity> <label-discharging>
+format-full-prefix                  = " "
+format-full-prefix-foreground       = ${colors.foreground-alt}
+ramp-capacity-0                     = 
+ramp-capacity-0-foreground          = ${colors.red}
+ramp-capacity-1                     = 
+ramp-capacity-2                     = 
+ramp-capacity-3                     = 
+ramp-capacity-4                     = 
+ramp-capacity-foreground            = ${colors.orange-alt}
+animation-charging-0                = 
+animation-charging-1                = 
+animation-charging-2                = 
+animation-charging-3                = 
+animation-charging-4                = 
+animation-charging-foreground       = ${colors.blue}
+animation-charging-framerate        = 750
+format-full-padding                 = 2
+format-charging-padding             = 2
+format-discharging-padding          = 2
+format-animation-charging-padding   = 2
+
+[module/conn]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/conn_name
+label-foreground                    = ${colors.foreground}
+label                               = %{A1: bash ~/.config/i3/rofi/scripts/network:}%output%%{A}
+label-padding                       = 2
+
+[module/date]
+type                                = custom/script
+interval                            = 5
+exec                                = echo "$(date "+%D")"
+format                              = <label>
+label-foreground                    = ${colors.foreground}
+label-padding                       = 2
+
+[module/clock]
+type                                = custom/script
+interval                            = 30
+exec                                = echo "$(date "+%b %d, %a %R")"
+format                              = <label>
+label                               = %{A: zenity --calendar &:}%output%%{A}
+label-foreground                    = ${colors.black}
+label-background                    = ${colors.green-alt3}
+label-padding                       = 2
+
+[module/powermenu]
+type                                = custom/menu
+format-spacing                      = 1
+label-open                          = 
+label-open-font                     = 2
+label-open-foreground               = ${colors.red}
+label-close                         = 
+label-close-foreground              = ${colors.foreground}
+label-separator                     = " "
+label-separator-foreground          = ${colors.foreground-alt}
+menu-0-0                            = 
+menu-0-0-foreground                 = ${colors.blue}
+menu-0-0-exec                       = menu-open-1
+menu-0-1                            = 
+menu-0-1-foreground                 = ${colors.red}
+menu-0-1-exec                       = menu-open-2
+menu-1-0-foreground                 = ${colors.red}
+menu-1-0                            = 
+menu-1-0-exec                       = /sbin/reboot
+menu-1-1                            = 
+menu-1-1-exec                       = menu-open-0
+menu-2-0-foreground                 = ${colors.red}
+menu-2-0                            = 
+menu-2-0-exec                       = /sbin/poweroff
+menu-2-1                            = 
+menu-2-1-exec                       = menu-open-0
+
+[module/separator]
+type                                = custom/text
+content                             = "."
+content-background                  = ${colors.border}
+content-foreground                  = ${colors.border}
+
+
+; =================================
+;	Other Settings
+; =================================
+[settings]
+screenchange-reload                 = true
+override-redirect                   = true
+
+; vim:ft=dosini

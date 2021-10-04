@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#echo "Lock Screen"
+echo " Log Out"
+echo " Reboot"
+echo " Shut Down"
+
+if [ ! -z "$@" ]; then
+	QUERY=$@
+	#if [ "$@" = "Lock Screen" ]; then
+	#	i3lock
+	#	exit 0
+	#fi
+
+	if [ "$@" = " Log Out" ]; then
+		i3-msg exit
+		exit 0
+	fi
+
+	if [ "$@" = " Reboot" ]; then
+		systemctl reboot
+		exit 0
+	fi
+
+	if [ "$@" = " Shut Down" ]; then
+		systemctl poweroff
+		exit 0
+	fi
+fi

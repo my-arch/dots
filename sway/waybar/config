@@ -1,0 +1,258 @@
+{
+    "layer": "bottom", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 35, // Waybar height (to be removed for auto height)
+    //"output": "DP-5",
+    "modules-left": ["custom/arch", "sway/workspaces", "custom/scratchpad-indicator", "custom/mpd", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "idle_inhibitor", "cpu", "custom/bluetooth", "pulseaudio", "battery", "network", "clock"],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "disable-scroll-wraparound": true,
+        "format": "{icon}",
+        "format-icons": {
+            //"1": "1",
+            //"2": "2",
+            //"3": "3",
+            //"4": "4",
+            //"5": "5",
+            //"6": "6 ",
+            //"7": "7 ",
+            //"8": "8 ",
+            //"9": "9",
+            //"10": "10"
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "",
+            "10": ""
+            //"default": "",
+            //"focused": "",
+            //"urgent": ""
+        }
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50
+    },
+
+    "mpd": {
+        //"format": "{stateIcon} {consumeIcon}  {randomIcon}  {repeatIcon}  {singleIcon}  {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        //"format": "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        //"format-paused" : "Paused - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        //"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+        "format": "{stateIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "max-length": 40,
+        "format-disconnected": "Disconnected",
+        "format-stopped": "Stopped",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "off": "<span color=\"#ffffff\"> Stopped</span>",
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "single-icons": {
+            "off": "<span color=\"#f53c3c\">1 </span> ",
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click-right": "mpc next",
+        "on-click": "mpc toggle",
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%h %d, %a %H:%M}",
+        //"format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "zenity --calendar"
+        // "timezone": "America/New_York",
+        //"format-alt": "{:%Y-%m-%d}"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}% "
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "format-critical": "{temperatureC}°C {icon}",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+
+    "battery": {
+        //"bat": "BAT0",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+
+    "network": {
+        //"format-linked": " {ifname:.<5.5s}..",
+        //"tooltip-format-linked": "{ifname} (No IP)",
+        "interval": 2,
+        //to add ... behind
+        //"format-wifi": " {essid:.<9.9s}",
+        //"format-ethernet": " {ifname:.<5.5s}",
+        //without ... behind
+        "format-wifi": " {essid:6s}",
+        "format-ethernet": " {ifname:.6s}",
+        "format-disconnected": "Disconnected",
+        "on-click": "bash ~/Documents/8_Config/0_scripts/network",
+        "tooltip-format-wifi": "Signal Strength {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname}: ({ipaddr}/{cidr})",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        //"format": "{volume}% {icon} {format_source}",
+        //"format-bluetooth": "{volume}% {icon}",
+        //"format-bluetooth-muted": " {icon}",
+        //"format-muted": " {format_source}",
+        //"format-muted": " {volume}%",
+        //"format-source": "{volume}% ",
+        //"format-source-muted": "",
+        "format": "{icon} {volume}%",
+        "format-icons": {
+            "headphone": "",
+            "hdmi": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "bluetooth": "",
+            "default": [""]
+        },
+        "on-click": "amixer set Master toggle",
+        "on-click-right": "bash ~/Documents/8_Config/0_scripts/sound_output"
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon} {title}",
+        "icon-size": 14,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+
+    //"custom/dropbox": {
+    //    "format": "{icon}",
+    //    "return-type": "json",
+    //    "interval": 2,
+    //    "format-icons": [""],
+    //    "exec": "~/Documents/8_Config/sway/waybar/module/dropbox",
+    //    "on-click": "bash ~/Documents/8_Config/sway/script/dropbox_wofi"
+    //},
+
+    //"custom/onedrive": {
+    //    "format": "{icon}",
+    //    "format-icons": [""],
+    //    "tooltip-format": "Upload file to onedrive",
+    //    "on-click": "bash ~/Documents/8_Config/sway/script/upload_onedrive"
+    //},
+
+    "custom/arch": {
+        "format": "{icon}",
+        "on-click": "rofi -show drun -theme $HOME/Documents/8_Config/1_rofi/themes/menu.rasi",
+        "format-icons": [""],
+    },
+
+    "custom/mpd": {
+        "format": "♪ {}",
+        //"max-length": 15,
+        "interval": 1,
+        "exec": "mpc current -f %title%",
+        "exec-if": "pgrep mpd",
+        "on-click": "mpc toggle",
+        "on-click-right": "mpc next"
+    },
+
+    "custom/scratchpad-indicator": {
+        "interval": 2,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '( select(.name == \"root\") | .nodes[] | select(.name == \"__i3\") | .nodes[] | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") }'",
+        "format": "{} ",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    },
+
+    "custom/bluetooth": {
+        "format": "{icon}",
+        "interval": 2,
+        "exec": "~/Documents/8_Config/0_scripts/bluetooth_waybar",
+        "return-type": "json",
+        "format-icons": [""],
+        "on-click": "bash ~/Documents/8_Config/0_scripts/bluetooth",
+        "on-click-right": "bluetoothctl connect 08:EB:ED:52:2F:2B && notify-send -t 1500 'Mi Portable Connected'"
+    }
+}
+
+; vim:ft=go

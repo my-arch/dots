@@ -1,0 +1,402 @@
+; Dark theme
+; =============================
+; 	Color
+; =============================
+[colors]
+background                          = #2E3440
+background-alt                      = #555555
+background-alt2                     = #777777
+foreground                          = #D8DEE9
+foreground-alt                      = #88C0D0
+
+launcher                            = #FFFFFF
+launcher1                           = #FFFFFF
+launcher2                           = #FFFFFF
+launcher3                           = #FFFFFF
+launcher4                           = #FFFFFF
+launcher5                           = #FFFFFF
+border                              = #10000000
+
+white                               = #FFFFFF
+black                               = #000000
+red                                 = #FF0000
+red-alt                             = #CC6666
+red-alt2                            = #FF5555
+yellow                              = #F0C674
+yellow-alt                          = #F8DFB0
+blue                                = #7FA0BC
+blue-alt                            = #7EEEFF
+green                               = #B3BB67
+green-alt                           = #AAFF77
+green-alt2                          = #0CFF00
+green-alt3                          = #C0E341
+orange                              = #FBA922
+orange-alt                          = #FABD2F
+pink                                = #FE715D
+pink-alt                            = #FDA78C
+
+
+; Palatte
+wal1                                = #2A9DB7
+wal2                                = #86C222
+wal3                                = #FED60A
+wal4                                = #646C6E
+wal5                                = #D33C0B
+wal6                                = #8F3A8D
+wal7                                = #E5E5E4
+
+
+; ============================
+;	Bar Settings
+; ============================
+[bar/bar]
+monitor                             = ${env:MONITOR:DP1-3}
+monitor-fallback                    = ${env:MONITOR:eDP1}
+;monitor                            = ${env:MONITOR:eDP-1}
+height                              = 35
+bottom                              = false
+background                          = ${colors.background}
+foreground                          = ${colors.foreground}
+border-top-size                     = 0
+border-bottom-size                  = 0
+border-left-size                    = 0
+border-right-size                   = 0
+border-color                        = ${colors.border}
+
+radius-top                          = 0
+radius-bottom                       = 0
+
+line-size                           = 3
+
+padding-left                        = 0
+padding-right                       = 0
+
+;separates different modules
+module-margin-left                  = 0
+module-margin-right                 = 1
+
+;tray-position = right
+
+font-0                              = Roboto Mono:size=10;0
+font-1                              = Font Awesome 5 Brands:size=10;0
+font-2                              = Font Awesome 5 Free:size=10;0
+font-3                              = Font Awesome 5 Free:style=solid:size=10;0
+font-4                              = WenQuanYi Zen Hei:size=10;0
+
+modules-left                        = ewmh xmonad mpd
+modules-center                      = xwindow 
+modules-right                       = bluetooth pulseaudio battery AC conn clock
+
+;wm-restack = generic
+
+; ============================
+;	Workspaces
+; ============================
+[module/xmonad]
+type                      = custom/script
+exec                      = xmonad-log
+tail                      = true
+label-padding             = 0
+label-underline           = ${colors.wal1}
+click-left                = xdotool key super+q
+click-right               = xdotool key super+e
+
+[module/xwindow]
+type                      = internal/xwindow
+label                     = %title:0:30:...%
+label-underline           = ${colors.wal3}
+label-padding             = 1
+
+[module/ewmh]
+type                      = internal/xworkspaces
+
+pin-workspaces            = false
+enable-click              = true
+enable-scroll             = true
+reverse-scroll            = false
+
+; Available tags:
+; <label-monitor>
+; <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+format                    = <label-state>
+
+label-active              = %name%
+label-active-background   = ${colors.background-alt2}
+label-active-underline    = ${colors.wal2}
+label-active-padding      = 2
+
+label-occupied            = %name%
+label-occupied-foreground = ${colors.background-alt2}
+label-occupied-padding    = 2
+
+label-urgent              = %name%
+label-urgent-foreground   = ${colors.red}
+label-urgent-underline    = ${colors.wal5}
+label-urgent-padding      = 2
+
+label-empty               = %icon%
+label-empty-foreground    = ${colors.background-alt}
+label-empty-padding       = 2
+
+
+; ============================
+;   Music
+; ============================
+[module/mpd]
+type = internal/mpd
+
+;format-online                       =  <icon-random>  <icon-prev>  <toggle>  <icon-next>  <icon-repeat>  <label-song>   <bar-progress>
+format-online                       = <toggle> <label-song>
+format-online-underline             = ${colors.wal6}
+format-online-padding               = 1
+
+format-offline                      = <label-offline>
+format-offline-foreground           = #77
+label-offline                       = mpd is offline
+
+icon-prev                           = 
+icon-stop                           = 
+icon-play                           = 
+icon-pause                          = 
+icon-next                           = 
+icon-seekf                          = >>
+icon-random                         = 
+icon-repeat                         = 
+
+label-song                          = %artist% - %title%
+
+icon-prev-foreground                = #77
+icon-stop-foreground                = #77
+icon-play-foreground                = #77
+icon-pause-foreground               = #77
+icon-next-foreground                = #77
+icon-seekf-foreground               = #77
+icon-random-foreground              = #77
+icon-repeat-foreground              = #77
+
+icon-prev-padding                   = 0
+icon-random-padding                 = 0
+icon-pause-padding                  = 0
+icon-play-padding                   = 0
+icon-next-padding                   = 0
+icon-repeat-padding                 = 0
+
+label-song-foreground               = #77
+
+toggle-on-foreground                = #55
+toggle-off-foreground               = #ff
+
+; Only applies if <bar-progress> is used
+bar-progress-width                  = 10
+bar-progress-indicator              = ▋
+bar-progress-indicator-foreground   = ${colors.green-alt}
+bar-progress-fill                   = ▋
+bar-progress-fill-foreground        = ${colors.blue-alt}
+bar-progress-empty                  = ▃
+bar-progress-empty-foreground       = ${colors.background-alt2}
+
+[module/pomo]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/pomo_status
+label-foreground                    = ${colors.yellow}
+label-padding                       = 1
+
+[module/kb]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/.config/i3/bar/polybar/module/numpad
+label-foreground                    = ${colors.green}
+label-padding                       = 1
+
+[module/bluetooth]
+type                                = custom/text
+click-left                          = bash ~/Documents/8_Config/0_scripts/bluetooth
+content-foreground                    = ${colors.foreground}
+content                               = ""
+content-underline                     = ${colors.wal1}
+content-padding                       = 1
+
+; ============================
+;	System Info
+; ============================
+[module/cpu]
+type                                = internal/cpu
+format                              = <label> <bar-load>
+format-underline                    = ${colors.wal6}
+label                               = 
+label-foreground                    = ${colors.foreground}
+
+bar-load-width                      = 10
+bar-load-foreground-0               = ${colors.green-alt}
+bar-load-foreground-1               = ${colors.orange}
+bar-load-foreground-2               = ${colors.red}
+bar-load-indicator                  =
+bar-load-indicator-foreground       = ${colors.white}
+bar-load-fill                       = =
+bar-load-empty                      = =
+bar-load-empty-foreground           = ${colors.background-alt2}
+
+[module/memory]
+type                                = internal/memory
+format                              = <label> <bar-used>
+format-underline                    = ${colors.wal5}
+label                               = 
+label-foreground                    = ${colors.foreground}
+
+bar-used-width                      = 10
+bar-used-foreground-0               = ${colors.green-alt}
+bar-used-foreground-1               = ${colors.orange}
+bar-used-foreground-2               = ${colors.red}
+bar-used-indicator                  = 
+bar-used-indicator-foreground       = ${colors.white}
+bar-used-fill                       = =
+bar-used-empty                      = =
+bar-used-empty-foreground           = ${colors.background-alt2}
+
+
+; ============================
+;	Other Info
+; ============================
+[module/fcitx]
+type                                = custom/script
+exec                                = ~/Documents/8_Config/2_polybar/module/fcitx5
+tail                                = true
+interval                            = 0
+format-prefix                       = "%{F#f94}⌨ %{F-}"
+format-padding                      = 1
+
+[module/keyboard]
+type                                = internal/xkeyboard
+blacklist-0                         = scroll lock
+label-layout                        = 
+label-indicator-on-numlock          = "%{F#f94}[Num]%{F-}"
+label-indicator-off-numlock         = 
+label-indicator-on-capslock         = "%{F#f94}[Caps]%{F-}"
+label-indicator-off-capslock        = 
+
+[module/backlight]
+type                                = internal/backlight
+card                                = intel_backlight
+enable-scroll                       = true
+
+[module/pulseaudio]
+type                                = internal/pulseaudio
+sink                                = alsa_output.pci-0000_12_00.3.analog-stereo
+use-ui-max                          = false
+interval                            = 5
+
+label-muted                         =  %percentage:2%%
+format-volume-underline             = ${colors.wal5}
+format-muted-underline              = ${colors.wal5}
+
+;format-volume                       = <label-volume>
+format-volume                       = <ramp-volume> <label-volume>
+format-volume-foreground            = ${colors.foreground}
+format-volume-padding               = 1
+ramp-volume-0                       = 
+ramp-volume-1                       = 
+label-volume                        = %percentage:2%%
+
+label-muted-foreground              = #6b6b6b
+label-muted-padding                 = 1
+
+click-right                         = ~/Documents/8_Config/0_scripts/sound_output
+
+[module/battery]
+type                                = internal/battery
+battery                             = BAT0
+adapter                             = AC
+full-at                             = 99
+format-charging                     = <animation-charging> <label-charging> 
+format-discharging                  = <ramp-capacity> <label-discharging>
+format-full-prefix                  = " "
+format-full-prefix-foreground       = ${colors.foreground-alt}
+ramp-capacity-0                     = 
+ramp-capacity-0-foreground          = ${colors.red}
+ramp-capacity-1                     = 
+ramp-capacity-2                     = 
+ramp-capacity-3                     = 
+ramp-capacity-4                     = 
+ramp-capacity-foreground            = ${colors.orange-alt}
+animation-charging-0                = 
+animation-charging-1                = 
+animation-charging-2                = 
+animation-charging-3                = 
+animation-charging-4                = 
+animation-charging-foreground       = ${colors.blue}
+animation-charging-framerate        = 750
+format-full-padding                 = 1
+format-charging-padding             = 1
+format-discharging-padding          = 1
+format-animation-charging-padding   = 1
+format-full-underline               = ${colors.wal6}
+format-charging-underline           = ${colors.wal6}
+format-discharging-underline        = ${colors.wal6}
+format-animation-charging-underline = ${colors.wal6}
+
+[module/AC]
+type                                = custom/script
+interval                            = 10
+exec                                = echo "$(if [ $(ls /sys/class/power_supply | grep "BAT0") ]; then (echo ""); else (echo "AC"); fi)"
+label-foreground                    = ${colors.foreground}
+label-underline                     = ${colors.wal6}
+label-padding                       = 1
+
+[module/conn]
+type                                = custom/script
+interval                            = 1
+exec                                = bash ~/Documents/8_Config/2_polybar/module/conn_name
+label-foreground                    = ${colors.foreground}
+label                               = %{A1: bash ~/Documents/8_Config/0_scripts/network:}%output%%{A}
+label-underline                     = ${colors.wal1}
+label-padding                       = 1
+
+[module/clock]
+type                                = custom/script
+interval                            = 30
+exec                                = echo "$(date "+%b %d, %a %R")"
+format                              = <label>
+label                               = %{A: zenity --calendar &:}%output%%{A}
+label-foreground                    = ${colors.foreground}
+label-background                    = ${colors.background-alt2}
+label-underline                     = ${colors.wal2}
+label-padding                       = 1
+
+[module/powermenu]
+type                                = custom/menu
+format-spacing                      = 1
+label-open                          = 
+label-open-font                     = 2
+label-open-foreground               = ${colors.red}
+label-close                         = 
+label-close-foreground              = ${colors.foreground}
+label-separator                     = " "
+label-separator-foreground          = ${colors.foreground-alt}
+menu-0-0                            = 
+menu-0-0-foreground                 = ${colors.blue}
+menu-0-0-exec                       = menu-open-1
+menu-0-1                            = 
+menu-0-1-foreground                 = ${colors.red}
+menu-0-1-exec                       = menu-open-2
+menu-1-0-foreground                 = ${colors.red}
+menu-1-0                            = 
+menu-1-0-exec                       = /sbin/reboot
+menu-1-1                            = 
+menu-1-1-exec                       = menu-open-0
+menu-2-0-foreground                 = ${colors.red}
+menu-2-0                            = 
+menu-2-0-exec                       = /sbin/poweroff
+menu-2-1                            = 
+menu-2-1-exec                       = menu-open-0
+
+
+; =================================
+;	Other Settings
+; =================================
+[settings]
+screenchange-reload                 = true
+override-redirect                   = true
+
+; vim:ft=dosini

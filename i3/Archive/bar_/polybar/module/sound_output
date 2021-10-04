@@ -1,0 +1,16 @@
+#!/bin/bash
+
+STATUS=$(pactl list sinks | grep hdmi)
+
+if [[ "$STATUS" = "" ]]
+then
+    pactl set-card-profile 1 off
+    pactl set-card-profile 0 off
+    pactl set-card-profile 1 output:hdmi-stereo
+    pactl set-card-profile 0 output:hdmi-stereo
+else
+    pactl set-card-profile 1 off
+    pactl set-card-profile 0 off
+    pactl set-card-profile 1 output:analog-stereo
+    pactl set-card-profile 0 output:analog-stereo
+fi

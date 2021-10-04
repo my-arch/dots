@@ -1,0 +1,53 @@
+background yes
+double_buffer yes
+
+alignment bottom_right
+
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+
+gap_x 20
+gap_y 54
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+own_window yes
+own_window_type desktop
+own_window_colour 000000
+own_window_argb_visual false
+own_window_argb_value 95
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+minimum_size 337 115
+stippled_borders 0
+update_interval 5.0
+uppercase no
+use_spacer none
+
+show_graph_scale no
+show_graph_range no
+
+use_xft yes
+xftalpha 0.1
+xftfont Droid Sans:size=12
+color0 white
+color1 EAEAEA
+color2 FFA300
+color3 grey
+color4 darkyellow
+color5 darkorange
+color6 darkgreen
+
+TEXT
+${font Ubuntu:size=10}${color2}To Do List:
+${color white}${execi 30 python3 /home/chew/.config/i3/script/conky/todo.py}

@@ -1,0 +1,135 @@
+# === PACMAN ===
+# Basic compiler
+base-devel \
+
+# Sway
+sway \
+swayidle \
+xorg-server-xwayland \
+waybar \
+upower \
+light \
+
+# Sound
+alsa-utils \
+alsa-firmware \
+pulseaudio \
+pulseaudio-alsa \
+pavucontrol \
+pamixer \
+wildmidi \
+
+# Printer
+system-config-printer \
+cups \
+
+# Matlab
+jre8-openjdk-headless \
+
+# Font
+ttf-roboto \
+ttf-roboto-mono \
+ttf-ubuntu-font-family \
+ttf-font-awesome \
+wqy-zenhei \
+wqy-bitmapfont \
+wqy-microhei \
+wqy-microhei-lite \
+
+# Others
+#wofi \
+pacman-contrib \
+qt5-wayland \
+mako \
+fcitx5 \
+fcitx5-qt \
+fcitx5-gtk \
+fcitx5-chinese-addons \
+fcitx5-configtool \
+xdg-utils \
+linux-headers \
+intel-media-driver \
+mesa \
+intel-gpu-tools \
+libva-utils
+htop \
+xournalpp \
+ghostscript \
+zsh
+
+# For screen recording and screenshot
+grim \
+wf-recorder \
+slurp \
+
+# For thunar and mount usb
+thunar \
+ntfs-3g \
+gvfs \
+gvfs-mtp \
+thunar-volman \
+polkit-gnome \
+adapta-gtk-theme \
+lxappearance
+
+# Ranger
+perl-file-mimeopen \
+ranger
+
+# For screen sharing
+# pipewire-pulse \
+libpipewire02 \
+pipewire \
+pipewire-media-session \
+xdg-desktop-portal-wlr \
+
+# Application
+qutebrowser \
+pdfjs \
+npm \
+python-pip \
+git \
+wget \
+chromium \
+evince \
+zathura \
+zathura-djvu \
+zathura-pdf-mupdf \
+libreoffice-fresh \
+mpd \
+ncmpcpp \
+mpc \
+mpv \
+imv \
+zenity \
+zip \
+unzip \
+virtualbox \
+qemu \
+spice-gtk \
+edk2-ovmf
+
+
+# === AUR ===
+# Others
+fcitx5-qt4 \
+fcitx5-qt5 \
+texlive-full \
+la-capitaine-icon-theme \
+swaylock-effects \
+lf \
+rofi-lbonn-wayland-git \
+onedrive-abraunegg \
+libselinux
+
+
+### Notes ###
+## Four items below for screen sharing
+## xwayland needed
+#xdg-desktop-portal-wlr
+#libpipewire02
+#pipewire
+#pipewire-pulse
+## set this up at pam file: 
+# XDG_CURRENT_DESKTOP=sway
+# XDG_SESSION_TYPE=wayland

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+WIRED=("$(nmcli c | grep ethernet | cut -c1-$(nmcli c | grep -aob "UUID" | grep -oE '[0-9]+') | sed 's/^[ \t]*//;s/[ \t]*$//')")
+CURRENT=("$(nmcli d status | grep -w 'connected' | cut -c$(nmcli d status | grep -aob "CONNECTION" | grep -oE '[0-9]+')- | sed 's/^[ \t]*//;s/[ \t]*$//')")
+ARR=("$(nmcli d wifi | awk '!/IN-USE/' | cut -c9-$(nmcli dev wifi | grep -aob "MODE"| grep -oE '[0-9]+') | cut -c20-)")
+
+echo "${ARR[0]}"
+NW=$(zenity --list --title="Simple Network Editor" \
+    --column="Network/Action" \
+    "Edit Connection" \
+    "$CURRENT" \
+    "$WIRED" \
+    $(printf '%s\n' "${ARR[@]}") \
+    "Turn Off" \
+    "Turn On" \
+    --height=300 \
+    --width=500)
+
+if [ "$NW" == "" ]; then
+	exit 0
+fi
+
+if [ "$NW" == "Edit Connection" ]; then
+	nm-connection-editor
+	exit 0
+fi
+
+if [ "$NW" == "Turn Off" ]; then
+	nmcli n off
+	exit 0
+fi
+
+if [ "$NW" == "Turn On" ]; then
+	nmcli n on
+	exit 0
+fi
+
+nmcli c down "$CURRENT"
+nmcli c up "$NW"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+status=$(lsof -wc pomo)
+
+if [ "${status}" == "" ]; then
+    echo "Not running"
+else
+    cat ~/.pomo/status
+fi

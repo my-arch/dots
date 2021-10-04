@@ -1,0 +1,23 @@
+* {
+    clear: rgba(0, 0, 0, 0%);
+
+    white: rgba(255, 255, 255, 100%);
+
+    black: rgba(0, 0, 0, 100%);
+
+    grey: rgba(188, 190, 191, 100%);
+    mid-grey: rgba(125, 128, 129, 100%);
+    dark-grey: rgba(35, 38, 39, 100%);
+
+    blue: rgba(61, 174, 233, 100%);
+    light-blue: rgba(196, 224, 255, 100%);
+
+    red: rgba(191, 3, 3, 100%);
+    light-red: rgba(245, 227, 227, 100%);
+
+    green: rgba(0, 110, 40, 100%);
+    light-green: rgba(177, 247, 200, 1);
+
+    breeze: rgba(246, 246, 247, 100%);
+    light-breeze: rgb(252, 252, 252, 100%);
+}

@@ -1,0 +1,236 @@
+* {
+    font-size                : 12px;
+    border                   : none;
+    border-radius            : 0;
+    /* background-color         : transparent; */
+}
+
+window#waybar {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family              : "Font Awesome 5 Free Regular, Font Awesome 5 Free Solid, Roboto Mono";
+
+    min-height               : 0;
+
+    color                    : #eceff4; /* foreground */
+    background-color         : #2e3440;
+
+    transition-property      : background-color;
+    transition-duration      : .5s;
+}
+
+/* window#waybar.hidden { */
+    /* opacity                  : 0.2; */
+/* } */
+
+#workspaces button {
+    color                    : #eceff4;
+    padding                  : 0 5px;
+    /* border-radius            : 50; */
+    /* border-bottom            : 3px solid rgba(255, 255, 255, 0); */
+}
+
+#workspaces button           :hover {
+    background               : rgba(256, 256, 256, 0.9);
+    border-bottom            : 3px solid #FFFFFF;
+    box-shadow               : inherit;
+}
+
+#workspaces button.focused {
+    font-family              : "Font Awesome 5 Free Solid";
+    color                    : #eceff4;
+    background-color         : #81a1c1;
+    /* background-color         : #777777; */
+    /* background-color         : #83a598; */
+    /* border-bottom            : 3px solid #FED60A; */
+    /* border-bottom            : 3px solid #83A598; */
+}
+
+#workspaces button.urgent {
+    background-color         : #eb4d4b;
+    /* border-bottom            : 3px solid #FFFFFF; */
+}
+
+#mode {
+    color                    : #ffffff;
+    /* background-color         : #64727D; */
+    background-color         : #637fa7;
+    /* border-radius            : 50; */
+    /* border-bottom            : 3px solid rgba(255, 255, 255, 0); */
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#onedrive,
+#custom-bluetooth,
+#idle_inhibitor,
+#custom-arch,
+#custom-dropbox,
+#custom-mpd,
+#custom-scratchpad-indicator,
+#window,
+#mpd {
+    padding                  : 0 10px;
+    margin                   : 0 0px;
+    /* border-bottom            : 3px solid rgba(255, 255, 255, 0); */
+}
+
+#custom-mpd,
+#custom-scratchpad-indicator {
+    color                    : #999999;
+}
+
+#custom-arch {
+    font-family              : "Symbol Nerd Font";
+    font-size                : 20px;
+    /* color                    : #637fa7; */
+}
+
+#window {
+    /* color                    : #ffffff; */
+    /* padding                  : 0 20px; */
+    /* background-color         : #777777; */
+    /* border-radius            : 50; */
+    /* background-color         : #83a598; */
+    /* border-bottom            : 3px solid #FED60A; */
+}
+
+#clock {
+    color                    : #ffffff;
+    /* background-color         : #777777; */
+    /* border-bottom            : 3px solid #FED60A; */
+    /* background-color         : #83a598; */
+    /* background-color         : #555555; */
+    /* border-radius            : 50; */
+    /* border-bottom            : 3px solid #86C222; */
+}
+
+#battery {
+    /* border-bottom            : 3px solid #8F3A8D; */
+}
+
+#battery.charging {
+    color                    : #ffffff;
+    background-color         : #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color     : #000000;
+        color                : #FFFFFF;
+    }
+}
+
+#battery.critical            :not(.charging) {
+    background-color         : #f53c3c;
+    color                    : #ffffff;
+    animation-name           : blink;
+    animation-duration       : 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction      : alternate;
+}
+
+label                        :focus {
+    background-color         : #FFFFFF;
+}
+
+#network {
+    background-color         : transparent;
+    /* border-bottom            : 3px solid #2A9DB7; */
+}
+
+#network.disconnected {
+    background-color         : #f53c3c;
+}
+
+#pulseaudio {
+    /* color                    : #FFFFFF; */
+    /* border-bottom            : 3px solid #D33C0B; */
+}
+
+#pulseaudio.muted {
+    background-color         : #81a1c1;
+}
+
+#custom-media {
+    background-color         : #66cc99;
+    color                    : #2a5c45;
+    min-width                : 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color         : #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color         : #ffa000;
+}
+
+#temperature {
+    background-color         : #f0932b;
+}
+
+#temperature.critical {
+    background-color         : #eb4d4b;
+}
+
+#tray {
+    background-color         : transparent;
+}
+
+#idle_inhibitor {
+    background-color         : transparent;
+}
+
+#idle_inhibitor.activated {
+    /* background-color         : #90B1B1; */
+    background-color         : #81a1c1;
+    /* color                    : #2A5C45; */
+}
+
+#custom-bluetooth {
+    /* color                    : #CCCCCC; */
+}
+
+#custom-bluetooth.Connected {
+    background-color         : #81a1c1;
+}
+
+#custom-bluetooth.On {
+    background-color         : #81a1c1;
+    color                    : #2A5C45;
+}
+
+#mpd {
+    color                    : #eceff4;
+    /* border-bottom            : 3px solid #8F3A8D; */
+}
+
+#mpd.disconnected {
+    background-color         : transparent;
+}
+
+#mpd.stopped {
+    background-color         : transparent;
+}
+
+#mpd.paused {
+    background-color         : transparent;
+}
+
+#custom-dropbox.up_to_date {
+    background-color         : transparent;
+}
+
+#custom-dropbox.others {
+    background-color         : #F53C3C;
+}

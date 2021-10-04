@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Get TODO ID
+TODO_ID=$(pgrep -f todo_conky)
+
+# Launch or close bar_window
+if [ -n "${TODO_ID}" ]; then
+	kill "${TODO_ID}"
+else
+	conky -c ~/.config/i3/conky/todo_conky
+fi

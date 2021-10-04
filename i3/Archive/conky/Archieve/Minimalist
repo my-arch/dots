@@ -1,0 +1,94 @@
+# Settings
+background no
+double_buffer yes
+
+use_xft yes
+xftfont Roboto:size=9
+xftalpha 1
+
+cpu_avg_samples 1
+net_avg_samples 1
+update_interval 1
+
+total_run_times 0
+
+# Transparency
+own_window_argb_visual yes
+own_window_argb_value 100
+
+# Windows Settings
+own_window yes
+own_window_type override   # override --> not under the control of windows manager
+own_window_transparent no
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+stippled_borders 0
+border_margin 5
+border_width 1
+default_color 000000
+default_shade_color 000000
+default_outline_color 000000
+
+minimum_size 1335 1
+#maximum_width 1200
+maximum_height 800
+alignment bottom_middle
+
+gap_x 0
+gap_y 40
+
+color0 ffff00
+color1 fed96d
+color2 ffc722
+color3 ed9d54
+
+
+TEXT
+${color3}${font Roboto:light:size=30}${alignr}${time %H:%M}$font
+${color1}${font Roboto:light:size=24}${alignr}${time %A}
+${alignr}${time %d/%m/%Y}$font
+
+${voffset -155}${color1}
+${font Roboto:bold:size=10}
+No.${goto 50} RAM >>            ${goto 200} $mem$font
+${hr 1}
+1. ${goto 50} ${top_mem name 1} ${goto 200} ${top_mem mem_res 1}
+2. ${goto 50} ${top_mem name 2} ${goto 200} ${top_mem mem_res 2}
+3. ${goto 50} ${top_mem name 3} ${goto 200} ${top_mem mem_res 3}
+4. ${goto 50} ${top_mem name 4} ${goto 200} ${top_mem mem_res 4}
+5. ${goto 50} ${top_mem name 5} ${goto 200} ${top_mem mem_res 5}
+
+${voffset -172}${color2}
+${font Roboto:bold:size=10}
+${goto 300} CPU >>        ${goto 450}   ${cpu cpu0}%$font
+${hr 1}
+${goto 300} ${top name 1} ${goto 450} ${top cpu 1}%
+${goto 300} ${top name 2} ${goto 450} ${top cpu 2}%
+${goto 300} ${top name 3} ${goto 450} ${top cpu 3}%
+${goto 300} ${top name 4} ${goto 450} ${top cpu 4}%
+${goto 300} ${top name 5} ${goto 450} ${top cpu 5}%
+
+${voffset -172}${color1}
+${font Roboto:bold:size=10}
+${goto 550} TEMP >> $font
+${hr 1}
+${goto 550} CPU1 ${goto 700} ${exec sensors | grep 'Core 0' | awk '{print $3}'}
+${goto 550} CPU2 ${goto 700} ${exec sensors | grep 'Core 1' | awk '{print $3}'}
+${goto 550} GPU ${goto 700} ${exec sensors | grep ^temp1 | tail -n 1 | awk '{print $2}'}
+${goto 550} HDD ${goto 700} ${exec sensors | grep 'SODIMM' | tail -n 1 | awk '{print $2}'}
+${goto 550} FAN ${goto 700} ${exec sensors | grep 'Processor Fan' | awk '{print $3}'} RPM
+
+${voffset -172}${color2}
+${font Roboto:bold:size=10}
+${goto 800} FILE >> $font
+${color0}${hr 1}${color2}
+${goto 800} Root ${goto 950}${fs_used /}
+${goto 800} Home ${goto 950}${fs_used /home}
+
+
+
+# vim: ft=dosini

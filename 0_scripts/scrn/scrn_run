@@ -1,0 +1,10 @@
+#!/bin/bash
+
+killall flameshot
+flameshot
+#flameshot gui -p ~/Desktop/
+flameshot gui -p ~/Documents/8_Config/0_scripts/scrn/temp/
+while [[ -z $(ls -A ~/Documents/8_Config/0_scripts/scrn/temp) ]]; do sleep 1; done;
+wl-copy < $(ls -t ~/Documents/8_Config/0_scripts/scrn/temp/* | head -n1)
+#xsel --clipboard < $(ls -t ~/Documents/8_Config/0_scripts/scrn/temp/* | head -n1)
+rm -f $(ls -t ~/Documents/8_Config/0_scripts/scrn/temp/*)

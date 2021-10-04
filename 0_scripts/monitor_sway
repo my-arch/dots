@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Check monitor connection
+# eDP-1 == Laptop
+# HDMI-A-1 == HDMI Port
+# DP-3 == Display Port Docking Station
+# DP-4 == Display Port Docking Station
+# DP-5 == VGA Docking Station
+
+# Get all monitors
+MON=($(swaymsg -t get_outputs | jq '.[].active'))
+NACTIVE=$(grep -o "true" <<< ${MON[*]} | wc -l)
+
+if [[ $NACTIVE > 1 ]]; then
+    swaymsg 'output eDP-1 disable'
+fi
+
+#if [[ "${CARR[1]}" == "true" && $NACTIVE > 1 ]]; then
+#    ACTION="disable"
+#else
+#    ACTION="enable"
+#fi
+
+#function check () {
+#    swaymsg -t get_outputs | grep name | awk '{print $2}' | grep -w $1 | cut -c 2-
+#}
+#
+### Enable display
+#if [ "$(check 'eDP-1')" = 'eDP-1",' ]; then
+#    swaymsg 'output eDP-1 enable'
+#fi
+#
+#if [ "$(check 'DP-1')" = 'DP-1",' ]; then
+#    swaymsg 'output DP-1 enable'
+#    swaymsg 'output eDP-1 disable'
+#    #swaymsg 'output DP-2 disable'
+#fi
+#
+#if [ "$(check 'DP-2')" = 'DP-2",' ]; then
+#    swaymsg 'output DP-2 enable'
+#    swaymsg 'output eDP-1 disable'
+#    swaymsg 'output DP-1 disable'
+#fi

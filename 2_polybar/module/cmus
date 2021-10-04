@@ -1,0 +1,32 @@
+#!/bin/bash
+
+full_text="Not Playing"
+short_text="$full_text"
+
+info=$(cmus-remote -Q 2> /dev/null)
+if [ "$?" -ne 0 ]; then
+	echo " Not Playing"
+	exit 0
+fi
+
+status=$(echo "$info" | grep "^status " | cut -d " " -f 2)
+artist=$(echo "$info" | grep "^tag artist " | tail -c +12)
+title=$(echo "$info" | grep "^tag title" | tail -c +11)
+
+if [ "$status" == "paused" ]
+then
+	icon=""
+elif [ "$status" == "stopped" ]
+then
+	echo ""
+	exit 0
+else
+	icon=""
+fi
+
+full_text=$(echo "$icon $artist - $title")
+
+#echo "$short_text"
+echo "$full_text"
+
+exit 0

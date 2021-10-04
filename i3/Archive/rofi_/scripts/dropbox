@@ -1,0 +1,32 @@
+#!/bin/bash
+
+ST=$(dropbox-cli status)
+
+ARR=()
+ARR+=("Start")
+ARR+=("Stop")
+ARR+=("Proxy - None")
+ARR+=("Proxy - Auto")
+ARR+=("Proxy - UTAR")
+
+CHOICE=$(printf '%s\n' "${ARR[@]}" | rofi -dmenu \
+    -theme ~/.config/i3/rofi/themes/dropbox.rasi \
+    -config ~/.config/i3/rofi/config/module.rasi \
+    -xoffset -125 -p "$ST")
+
+case $CHOICE in
+    "Start")
+        dropbox-cli start
+        ;;
+    "Stop")
+        dropbox-cli stop
+        ;;
+    "Proxy - None")
+        dropbox-cli proxy none
+        ;;
+    "Proxy - Auto")
+        dropbox-cli proxy auto
+        ;;
+    "Proxy - UTAR")
+        dropbox-cli proxy manual http 192.168.31.19 8080 1201371 8245
+esac

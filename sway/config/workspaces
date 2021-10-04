@@ -1,0 +1,97 @@
+# ==========================================================
+# Workspaces setup
+# ==========================================================
+    # Back and forth
+	workspace_auto_back_and_forth yes
+
+	# Name workspaces
+	set $ws1 1
+	set $ws2 2
+	set $ws3 3
+	set $ws4 4
+	set $ws5 5
+	set $ws6 6
+	set $ws7 7
+	set $ws8 8
+	set $ws9 9
+	set $ws10 10
+
+# ==========================================================
+# Assign workspace
+# ==========================================================
+	# Web browser
+	assign [app_id="firefox"] $ws1
+	for_window [app_id="firefox"] focus
+	assign [title="Firefox"] $ws1
+	for_window [title="Firefox"] focus
+	assign [app_id="Min"] $ws1
+	for_window [app_id="Min"] focus
+	assign [app_id="qutebrowser"] $ws1
+	for_window [app_id="qutebrowser"] focus
+	assign [app_id="microsoft-edge-beta"] $ws1
+	for_window [app_id="microsoft-edge-beta"] focus
+	assign [class="Microsoft-edge-beta"] $ws1
+	for_window [class="Microsoft-edge-beta"] focus
+
+	# Terminal
+	assign [app_id="^(xfce4-terminal)$" title="^((?!Dropdown).)*$"] $ws2
+	for_window [app_id="^(xfce4-terminal)$" title="^((?!Dropdown).)*$"] focus
+	assign [app_id="^(Alacritty)$"] $ws2
+	for_window [app_id="^(Alacritty)$"] focus
+	assign [app_id="org.pwmt.zathura"] $ws2
+	for_window [app_id="org.pwmt.zathura"] focus
+
+	# Office documents
+	assign [class="Wpp|Wps|Et"] $ws3
+	for_window [class="Wpp|Wps|Et"] focus
+	assign [app_id="libreoffice"] $ws3
+	for_window [app_id="libreoffice"] focus
+	assign [app_id="soffice"] $ws3
+	for_window [app_id="soffice"] focus
+	assign [app_id="evince"] $ws3
+	for_window [app_id="evince"] focus
+	#assign [app_id="com.github.xournalpp.xournalpp"] $ws3
+	#for_window [app_id="com.github.xournalpp.xournalpp"] focus
+	
+	# File manager
+	assign [app_id="thunar"] $ws4
+	for_window [app_id="thunar"] focus
+
+	# Multimedia
+	assign [app_id="mpv"] $ws4
+	for_window [app_id="mpv"] focus
+	assign [app_id="vlc"] $ws4
+	for_window [app_id="vlc"] focus
+	assign [app_id="pavucontrol"] $ws4
+	for_window [app_id="pavucontrol"] focus
+
+    # MATLAB
+	assign [class="MATLAB R2020a"] $ws5
+	assign [class="MATLAB R2018b"] $ws5
+
+	# Photo/Video editing
+	assign [app_id="Gimp"] $ws6
+	for_window [app_id="Gimp"] focus
+
+	# Appearance
+	assign [class="Lxappearance"] $ws6
+	for_window [class="Lxappearance"] focus
+
+	# Teams & Chromium
+	assign [class="Microsoft Teams - Preview"] $ws9
+	for_window [class="Microsoft Teams - Preview"] focus
+	assign [app_id="zoom"] $ws9
+	for_window [app_id="zoom"] focus
+	assign [title="Chromium"] $ws9
+	for_window [title="Chromium"] focus
+
+    # Others
+    assign [class="Opera"] $ws9
+    assign [class="Tor Browser"] $ws9
+
+    # Windows
+	assign [app_id="virt-manager"] $ws10
+	assign [class="VirtualBox Manager"] $ws10
+	assign [class="VirtualBox Machine"] $ws10
+	assign [class="RAIL"] $ws10
+	assign [app_id="spicy"] $ws10
